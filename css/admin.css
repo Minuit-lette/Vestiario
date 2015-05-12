@@ -1,0 +1,46 @@
+	body,button{
+		background: rgb(0, 0, 0);
+		background: -moz-linear-gradient(45deg, rgb(0, 0, 0) 30%, rgb(56, 58, 68) 70%);
+		background: -webkit-linear-gradient(45deg, rgb(0, 0, 0) 30%, rgb(56, 58, 68) 70%);
+		background: -o-linear-gradient(45deg, rgb(0, 0, 0) 30%, rgb(56, 58, 68) 70%);
+		background: -ms-linear-gradient(45deg, rgb(0, 0, 0) 30%, rgb(56, 58, 68) 70%);
+		background: linear-gradient(135deg, rgb(0, 0, 0) 30%, rgb(56, 58, 68) 70%);
+	}
+	#indexAdmin,#seccionPrincipalAdmin,img,label,input,button,textarea{
+		margin-left: auto;
+		margin-right: auto;
+		color: #DDDDDD;
+		display: block;
+	}
+	.inputNegro{
+		color: #000000;
+	}
+	th,tr,td{
+		padding: 2px;
+	}
+	#modulos{
+		padding: 5px;
+		
+	}
+	#modulos a:hover, #modulos a:active, #modulos a:visited, #modulos a{
+		text-decoration: none;
+		font-size: 200%;
+		font-style: italic;
+		top: 25px;
+	}
+	
+	@media (max-width: 800px){
+		#indexLogo{
+			width:50%;
+			height:50%;
+		}
+		
+	}
+	
+	@media (max-width: 1280px){
+		#logoSeccion{
+			width: 70%;
+			height: 70%;
+		}
+	}
+	

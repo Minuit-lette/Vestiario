@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Vestiario</title>
+	<link rel="stylesheet" href="font-awesome-4.3.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/estilo.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+
+</head>
+<body>
+	@@Header@@
+    <script type="text/javascript">
+    	$(document).on("scroll",function(){
+    		if($(document).scrollTop()>150){
+        		$("#header").addClass("small");
+    		} else{
+        		$("#header").removeClass("small");
+    		}
+		});
+	</script>
+	<script type="text/javascript">
+		function sumar(){
+			var i=$("#cantidad");
+			i.val(parseInt(i.val())+1);
+		}
+		function restar(){
+			var i=$("#cantidad");
+			if(parseInt(i.val())>1)
+			i.val(parseInt(i.val())-1);
+		}
+		function cambiarImagen(obj){
+			var ima=$("img.img-principal");
+			var src=obj.attr("src");
+			var src1=ima.attr("src");
+			ima.attr("src",src);
+			obj.attr("src",src1);
+		}
+	</script>
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-8">
+				<div class=" col-lg-10">
+					<img class="img-principal" src="imagenes/@@ProductoImgGrande@@" alt=""></img>
+				</div>
+				<div class=" col-lg-2">
+					<img class="img-mini" src="imagenes/@@ProductoImg1@@" alt="" onclick="cambiarImagen($(this))"></img>
+				</div>
+				<div class=" col-lg-2">
+					<img class="img-mini" src="imagenes/@@ProductoImg2@@" alt="" onclick="cambiarImagen($(this))"></img>
+				</div>
+				<div class=" col-lg-2">
+					<img class="img-mini" src="imagenes/@@ProductoImg3@@" alt="" onclick="cambiarImagen($(this))"></img>
+				</div>
+
+			</div>
+			<div class="col-lg-4" id="detalle">
+				<h2>@@ProductoNombre@@</h2>
+				<span>Precio: <strong>$@@ProductoPrecio@@</strong></span>
+				<div>
+					<label>Talla:</label>
+					<select>
+						<option value="0">XS</option>
+						<option value="1">S</option>
+						<option value="2">M</option>
+						<option value="3">L</option>
+					</select>
+				</div>
+				<div >
+					<button onclick="sumar()"><i class="fa fa-plus"></i></button>
+					<input id="cantidad" class="cantidad-form" type="text" value="1">
+					<button onclick="restar()"><i class="fa fa-minus"></i></button>
+					<button class="btn btn-default" role="button"><i class="fa fa-shopping-cart"></i> Añadir al carrito</button>
+				</div>
+				<p>@@ProductoDescripcion@@</p>
+			</div>
+		</div>
+	</div>
+    @@Footer@@
+</body>
+</html>

@@ -1,0 +1,53 @@
+	<script src="js/validador.js"></script>
+	<!--Header Menu-->
+	<div class="container" id="header">
+		<div class="row">
+			<nav role="navigation" class="navbar navbar-inverse navbar-fixed-top ">
+		        <!-- Menu vista movil -->
+		        <div class="navbar-header visible-xs ">
+		            <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+		                <span class="sr-only">Toggle navigation</span>
+		                <span class="icon-bar"></span>
+		                <span class="icon-bar"></span>
+		                <span class="icon-bar"></span>
+		            </button>
+		            
+		        </div>
+		        <!-- Menu contenido-->
+		        <!--Logo vista movil-->
+		        <img src="imagenes/blanco.png" alt="Logo vestiario" class="img-responsive visible-xs" id="logo">
+		        <!--Logo vista escritorio-->
+		        <img src="imagenes/logo.jpg" alt="Logo vestiario" class="img-responsive hidden-xs" id="logo"><a href="#" class="navbar-brand visible-xs">Vestiario</a></img>
+
+		        <div id="navbarCollapse" class="collapse navbar-collapse">
+		            <ul class="nav navbar-nav">
+		            	<li class="active"><a href="index.php">HOME</a></li>
+		            	<li class="dropdown">
+		                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">Colecciones<b class="caret"></b></a>
+		                    <ul role="menu" class="dropdown-menu ">
+		                        <li><a href="?ctl=productos&act=listarHombre">Hombre</a></li>
+		                        <li><a href="?ctl=productos&act=listarMujer">Mujer</a></li>
+		                        <li class="divider"></li>
+		                        <li><a href="?ctl=productos">Todo</a></li>
+		                    </ul>
+		                </li>
+		                <li><a href="?ctl=home&act=registrar">Registrarse</a></li>
+		                <li><a href="?ctl=home&act=contacto">Contacto</a></li>
+		                <li><a href="?ctl=home&act=acercade">Acerca de</a></li>
+		                <li><a href="?ctl=carrito"><i class="fa fa-shopping-cart"></i> Carrito</a></li>
+		            </ul>
+		      		
+		            <form class="navbar-form navbar-right" id="sesion" role="search">
+		            	<div class="form-group">
+		            		<input type="email" class="form-control input-sm" placeholder="ejemplo@dominio.com">
+		            	</div>
+		            	<div class="form-group">
+		            		<input type="password" class="form-control input-sm" placeholder="Contraseña">
+		            	</div>
+		            	<button type="submit" class="btn btn-primary btn-xs">Iniciar sesion</button>
+		            	<a class="btn btn-primary btn-xs"href="?ctl=home&act=recuperar">Recuperar Contraseña</a>
+		            </form>
+		        </div><!--/Menu contenido-->
+		    </nav>
+		</div>
+    </div><!--/Header Menu-->

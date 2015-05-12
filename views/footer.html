@@ -1,0 +1,30 @@
+
+	<!--Footer-->
+	<div class="container-fluid navbar-inverse ">
+		<div class="row"> 
+			<footer>
+				<div class="col-lg-2 col-md-3 col-sm-3 col-xs-4">
+					<a class="btn btn-link btn-lg" href="https://www.facebook.com/">
+						<i class="fa fa-facebook-square fa-stack-2x social"> Facebook</i>
+					</a>
+				</div>
+				
+				<div class="col-lg-2 col-md-3 col-sm-3 col-xs-4">
+						<a class="btn btn-link btn-lg" href="https://twitter.com/">
+							<i class="fa fa-twitter-square fa-stack-2x social"> Twitter</i>
+						</a>
+				</div>
+
+				<div class="col-lg-4 col-lg-offset-4 col-md-offset-2 col-md-4 col-sm-6 col-xs-12">
+					<div id="suscribirse" action="?ctl=home" method="POST">	
+						<h3>Suscribirse</h3>
+						<p>Suscribete ahora para recibir noticias y ofertas</p>
+						<form action="?ctl=home" method="POST">
+							<input data-previousVal="0" name="emailSuscripcion" id="emailSuscripcion" type="email" class="form-control input-sm" onChange="validarSuscripcion()" placeholder="ejemplo@dominio.com">
+							<button type="submit" class="btn btn-primary btn-xs">Suscribirse</button>
+						</form>
+					</div>
+				</div>
+			</footer>
+		</div>
+	</div>

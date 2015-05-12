@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Vestiario</title>
+	<link rel="stylesheet" href="font-awesome-4.3.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/estilo.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+
+</head>
+<body>
+	<?php include 'header.php';?>
+
+    <script type="text/javascript">
+    	$(document).on("scroll",function(){
+    		if($(document).scrollTop()>150){
+        		$("#header").addClass("small");
+    		} else{
+        		$("#header").removeClass("small");
+    		}
+		});
+	</script>
+
+	<div class="container principal" id="acerca">
+		<div class="row">
+			<section class="col-lg-12">
+				<div class="col-lg-6">
+					<h1>Acerca de...</h1>
+					<p>Vestiario, siluetas lineales, choque texturas que se unen a través de puntadas para crear prendas que cambian de forma natural e imperceptible hasta concretar una estética caótica.</p>
+				</div>
+				<div class="col-lg-6">
+					<h1>Visitanos</h1>
+					<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1865.6617249334163!2d-103.4226264!3d20.737680200000003!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8428af6933d4407d%3A0x78dea607daa0e3ec!2sCalle+Rosas+1163%2C+La+Casita%2C+45138+Zapopan%2C+Jal.!5e0!3m2!1ses!2smx!4v1425848735385" width="400" height="300" frameborder="0" style="border:0"></iframe>
+				</div>
+			</section>
+		</div>
+	</div>
+
+	<?php include 'footer.php';?>
+</body>
+</html>

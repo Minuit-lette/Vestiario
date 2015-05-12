@@ -1,0 +1,217 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Vestiario</title>
+	<link rel="stylesheet" href="font-awesome-4.3.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="css/estilo.css">
+
+</head>
+<body>
+
+	<?php include 'admin-header.php';?>
+
+    <script type="text/javascript">
+    	$(document).ready(function(){
+			$('.dropdown-menu').find('form').click(function (e) {
+        		e.stopPropagation();
+			});
+		});
+		
+		$(window).resize(function () { 
+    		$('body').css('padding-top', parseInt($('#main-navbar').css("height"))+10);
+		});
+
+		$(window).load(function () { 
+		    $('body').css('padding-top', parseInt($('#main-navbar').css("height"))+10);        
+		});
+	</script>
+
+	<script type="text/javascript">
+	punto=0;
+	botonVal=0;
+	botonVal1=0;
+		function validaNumeros(e){
+			tecla = (document.all) ? e.keyCode : e.which;
+			if (tecla==8) return true;
+			if (tecla==109) return true;
+			if (e.ctrlKey && tecla==86) { return true};
+			if (e.ctrlKey && tecla==67) { return true};
+			if (e.ctrlKey && tecla==88) { return true};
+			patron = /[0-9]/;
+			te = String.fromCharCode(tecla);
+			if ((tecla>=96 && tecla<=105)|| (tecla==110 && punto==0) || patron.test(te)) { 
+				//if(tecla==110)
+					//punto=1;
+				return true;
+			};
+			return false;	
+		}
+		function verificaNum(obj){
+			o=$(obj);
+			p=/^[0-9]+[.]*[0-9]*$/;
+			if(!p.test(o.val())){
+				if(botonVal!=1){
+				errorNum=$('<div/>',{'class': 'alert alert-danger'});
+					errorNum.text("Numero no valido");
+					errorNum.insertAfter(o.parent());
+				}
+				botonVal=1;
+			}
+			else{
+				if(botonVal==1)
+					errorNum.remove();
+				botonVal=0;
+			}
+			}
+		function validaPorc(e){
+			tecla = (document.all) ? e.keyCode : e.which;
+			if (tecla==8) return true;
+			if (tecla==109) return true;
+			if (e.ctrlKey && tecla==86) { return true};
+			if (e.ctrlKey && tecla==67) { return true};
+			if (e.ctrlKey && tecla==88) { return true};
+			patron = /[0-9]/;
+			te = String.fromCharCode(tecla);
+			if ((tecla>=96 && tecla<=105)|| patron.test(te)) { 
+				//if(tecla==110)
+					//punto=1;
+				return true;
+			};
+			return false;		
+		}
+		function verificaPor(obj){
+			o=$(obj);
+			if(!(parseInt(o.val())>=0 && parseInt(o.val())<=80)){
+				if(botonVal1!=1){
+				errorNum1=$('<div/>',{'class': 'alert alert-danger'});
+					errorNum1.text("Porcentaje tiene un rango de 0 - 80");
+					errorNum1.insertAfter(o.parent());
+				}
+				botonVal1=1;
+			}
+			else{
+				if(botonVal1==1)
+					errorNum1.remove();
+				botonVal1=0;
+			}
+		}
+	</script>
+
+	<div class="container " id="edicionbanner">
+		<div class="row">
+			<div class="col-lg-12 col-md-12 col-xs-12">
+				<img class="col-lg-1 col-md-1 col-xs-2"src="imagenes/blanco-mini.png" alt="">
+				<h1 class="principal col-lg-10 col-md-10 col-xs-8 ">CAMISA NEGRA</h1>
+				<img class="col-lg-1 col-md-1 col-xs-2"src="imagenes/blanco-mini.png" alt="">
+			</div>
+		</div>
+	</div>
+
+	<div class="container well" id="ediciontabla">
+		<div class="row">
+			<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-xs-8 col-xs-offset-2">
+				
+				<form>
+
+				<div class="panel panel-default">
+					<div class="admin-edit-panel-heading">
+						<h3 class="panel-title admin-edit-paneltitle">ID</h3>
+					</div>
+					<div class="panel-body">
+						<input type="number" readonly value="27" class="form-control resalta">
+					</div>
+				</div>
+
+				<div class="panel panel-default">
+					<div class="admin-edit-panel-heading">
+						<h3 class="panel-title admin-edit-paneltitle">Nombre</h3>
+					</div>
+					<div class="panel-body">
+						<input type="text" class="form-control resalta" value="Camisa negra">
+					</div>
+				</div>
+
+				<div class="panel panel-default">
+					<div class="admin-edit-panel-heading">
+						<h3 class="panel-title admin-edit-paneltitle">Imagen</h3>
+					</div>
+					<div class="panel-body center">
+						<div>
+							<img src="imagenes/prenda.png">
+						</div>
+						<div>
+							<button type="button" class="btn btn-lg btn-primary blackbtn">Subir nueva imagen</button>
+						</div>
+					</div>
+				</div>
+
+				<div class="panel panel-default">
+					<div class="admin-edit-panel-heading">
+						<h3 class="panel-title admin-edit-paneltitle">Colección</h3>
+					</div>
+					<div class="panel-body">
+						<select id="porcolec" class="form-control resalta">
+							<option value="1">Hombre</option>
+							<option selected value="2">Mujer</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="panel panel-default">
+					<div class="admin-edit-panel-heading">
+						<h3 class="panel-title admin-edit-paneltitle">Precio</h3>
+					</div>
+					<div class="panel-body">
+						<div class="input-group">
+							<span class="input-group-addon">$</span>
+							<input class="form-control resalta" type="number" value="200.00" onkeydown="return validaNumeros(event)" onChange="verificaNum(this)">
+						</div>
+					</div>
+				</div>
+
+				<div class="panel panel-default">
+					<div class="admin-edit-panel-heading">
+						<h3 class="panel-title admin-edit-paneltitle">Descuento</h3>
+					</div>
+					<div class="panel-body">
+						<div class="input-group">
+							<input class="form-control resalta" type="number" value="0" onkeydown="return validaPorc(event)" onChange="verificaPor(this)">
+							<span class="input-group-addon">%</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="panel panel-default">
+					<div class="admin-edit-panel-heading">
+						<h3 class="panel-title admin-edit-paneltitle">Descripción</h3>
+					</div>
+					<div class="panel-body">
+							<textarea class="form-control resalta nonresize">Camisa simple negra ideal para salidas dominicales que tienen como lugar parques con frondosa vegetación</textarea>
+					</div>
+				</div>
+
+				<div class="center">
+					<button id="admin-actualizar" type="button" class="btn btn-lg btn-primary blackbtn">Actualizar</button>
+				</div>
+
+				<div class="panel panel-default">
+					<div id="admin-header-eliminar" class="admin-edit-panel-heading center">
+						<h3 class="panel-title admin-edit-paneltitle"><i class="fa fa-exclamation-triangle"></i> Eliminar <i class="fa fa-exclamation-triangle"></i></h3>
+					</div>
+					<div class="panel-body center">
+						<button type="button" class="btn btn-lg btn-primary warning-btn">Eliminar objeto</button>
+					</div>
+				</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+	
+</body>
+</html>

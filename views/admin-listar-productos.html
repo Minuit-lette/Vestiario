@@ -1,0 +1,168 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Vestiario</title>
+	<link rel="stylesheet" href="font-awesome-4.3.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/estilo.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+	<?php include 'admin-header.php';?>
+
+    <script type="text/javascript">
+    	$(document).ready(function(){
+			$('.dropdown-menu').find('form').click(function (e) {
+        		e.stopPropagation();
+			});
+		});
+		
+		$(window).resize(function () { 
+    		$('body').css('padding-top', parseInt($('#main-navbar').css("height"))+10);
+		});
+
+		$(window).load(function () { 
+		    $('body').css('padding-top', parseInt($('#main-navbar').css("height"))+10);        
+		});
+	</script>
+
+	<script type="text/javascript">
+		function marcarTodo(obj){
+			check=document.getElementsByName("seleccion");
+			for(i=0;i<check.length;i++){
+				check[i].checked=obj.checked;
+			}
+		}
+	</script>
+
+	<div class="container " id="edicionbanner">
+		<div class="row">
+			<div class="col-lg-12 col-md-12 col-xs-12">
+				<img class="col-lg-1 col-md-1 col-xs-2"src="imagenes/blanco-mini.png" alt="">
+				<h1 class="principal col-lg-10 col-md-10 col-xs-8 ">LISTAR ARTÍCULOS</h1>
+				<img class="col-lg-1 col-md-1 col-xs-2"src="imagenes/blanco-mini.png" alt="">
+			</div>
+		</div>
+	</div>
+
+	<div class="container well" id="ediciontabla">
+		<div class="row">
+			<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-xs-8 col-xs-offset-2">
+
+				<form id="busqueda">
+					<div class="mov">
+						<div>
+							<label for="buscar">Buscar: <label>
+						</div>
+						<div>
+							<input id="buscar" type="text" class="form-control resalta" value="Camisa"></input>
+						</div>
+					</div>
+
+					<div class="mov">
+						<div>
+							<label for="porcolec">Por colecciones: <label>
+						</div>
+						<div>
+							<select id="porcolec" class="form-control resalta">
+								<option select value="0">Todas las colecciones</option>
+								<option value="1">Hombre</option>
+								<option value="1">Mujer</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="mov">
+						<div>
+							<label for="max">Precio máximo: <label>
+						</div>
+						<div>
+							<input id="max" type="number" class="form-control resalta"></input>
+						</div>
+					</div>
+
+					<div class="mov">
+						<button type="button" class="btn btn-lg btn-primary blackbtn">Buscar</button>
+					</div>
+
+					<div class="limpia"></div>
+				
+				<div id="mensajebusqueda">
+					<span class="ital">Resultados para la búsqueda: "<span class="bol">Camisa</span>" en <span class="bol">"Todas las coleccioones"</span> </span>
+				</div>
+
+				</form>
+
+				<table id="itemadmintable" class="table">
+					<thead>
+						<th>ID</th>
+						<th>Imagen</th>
+						<th>Nombre</th>
+						<th>Colección</th>
+						<th>Precio</th>
+						<th>Descuento</th>
+						<th>Descripción</th>
+						<th>Editar</th>
+						<th><label for="eliminarTodo"> Eliminar todo </label><input type="checkbox" name="seleccion" id="eliminarTodo" value="eliminarTodo" onClick="marcarTodo(this)"/></th>
+					</thead>
+					
+					<tr>
+						<td> <span>27</span> </td>
+						<td> <img src="imagenes/prenda.png"> </td>
+						<td> <span>Camisa negra</span> </td>
+						<td> <span>Mujer</span>  </td>
+						<td> <span>$200</span> </td>
+						<td> <span>Sí<br>12%</span> </td>
+						<td> <span>Camisa simple negra ideal para salidas dominicales que tienen como lugar parques con frondos vegetación</span> </td>
+						<td> <button type="button" class="btn btn-lg btn-primary botonregistro"> Editar </button> </td>
+						<td> <input type="checkbox" name="seleccion" id="eliminar1" value="eliminarTodo" /></td>
+					</tr>
+
+					<tr>
+						<td> <span>36</span> </td>
+						<td> <img src="imagenes/camisacool.jpg"> </td>
+						<td> <span>Camisa vestial</span> </td>
+						<td> <span>Hombre</span>  </td>
+						<td> <span>$120</span> </td>
+						<td> <span>No<br>0%</span> </td>
+						<td> <span>Camisa simple negra ideal para salidas dominicales que tienen como lugar parques con frondos vegetación</span> </td>
+						<td> <button type="button" class="btn btn-lg btn-primary botonregistro"> Editar </button> </td>
+						<td> <input type="checkbox" name="seleccion" id="eliminar2" value="eliminarTodo" /></td>
+					</tr>
+
+					<tr>
+						<td> <span>42</span> </td>
+						<td> <img src="imagenes/chola.jpg"> </td>
+						<td> <span>Camisa chola mujer</span> </td>
+						<td> <span>Mujer</span>  </td>
+						<td> <span>$76</span> </td>
+						<td> <span>No<br>0%</span> </td>
+						<td> <span>Camisa simple negra ideal para salidas dominicales que tienen como lugar parques con frondos vegetación</span> </td>
+						<td> <button type="button" class="btn btn-lg btn-primary botonregistro"> Editar </button> </td>
+						<td> <input type="checkbox" name="seleccion" id="eliminar3" value="eliminarTodo" /></td>
+					</tr>
+
+					<tr>
+						<td> <span>56</span> </td>
+						<td> <img src="imagenes/taprab.jpg"> </td>
+						<td> <span>Camisa con taparabo largo</span> </td>
+						<td> <span>Hombre</span>  </td>
+						<td> <span>$230</span> </td>
+						<td> <span>No<br>0%</span> </td>
+						<td> <span>Camisa excéntrica que cuenta con una tela colgante a modo de taparabo que se mezcla bien con un short, ideal para salidas informales, para hombres que quieren liberar su lado salvaje </span> </td>
+						<td> <button type="button" class="btn btn-lg btn-primary botonregistro"> Editar </button> </td>
+						<td> <input type="checkbox" name="seleccion" id="eliminar4" value="eliminarTodo" /></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	
+</body>
+</html>

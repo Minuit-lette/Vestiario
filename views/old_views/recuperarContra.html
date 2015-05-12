@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Vestiario</title>
+	<link rel="stylesheet" href="font-awesome-4.3.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="css/estilo.css">
+
+</head>
+<body>
+
+	<?php include 'header.php';?>
+
+    <script type="text/javascript">
+    	$(document).on("scroll",function(){
+    		if($(document).scrollTop()>150){
+        		$("#header").addClass("small");
+    		} else{
+        		$("#header").removeClass("small");
+    		}
+		});
+	</script>
+	<script type="text/javascript">
+	correoVal=0;
+	passVal=0;
+	function validar(){
+		var correo=$("#inputEmail");
+		var pass=$("#inputPassword");
+		var pass2=$("#inputPasswordConfirm");
+
+		if( !(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/.test(correo.val()))){
+			if(correoVal!=1){
+				errorCorreo=$('<div/>',{'class': 'alert alert-danger'});
+				errorCorreo.text("La sintaxis del email no es válido");
+				errorCorreo.insertAfter(correo);				
+			}
+				correoVal=1;
+			}
+		else{
+				if(correoVal==1)
+					errorCorreo.remove();
+				correoVal=0;
+		}
+
+		if(pass.val()!="" && pass2.val()!=""){
+			if (pass.val()!=pass2.val()) {
+				if(passVal!=1){
+					errorPass=$('<div/>',{'class': 'alert alert-danger'});
+					errorPass.text("Las contraseñas no coinciden");
+					errorPass.insertAfter(pass2);
+				}
+				passVal=1;
+			}
+			else{
+					if(passVal==1)
+						errorPass.remove();
+					passVal=0;
+				}
+		}
+		function verifica(obj){
+			validar();
+			if(passVal==1 || correoVal==1){
+				if(botonVal!=1){
+					errorBoton=$('<div/>',{'class': 'alert alert-danger'});
+					errorBoton.text("Hay campos con errores");
+					errorBoton.insertAfter(obj);}
+				botonVal=1;
+			}
+			else{
+				if(botonVal==1)
+					errorBoton.remove();
+				botonVal=0;
+			}
+		}
+	}
+	</script>
+	
+	<!-- MARCA -->
+
+	<div class="container " id="formularioregistro">
+		<div class="row">
+			<div class="col-lg-12 col-md-12 col-xs-12">
+				<img class="col-lg-1 col-md-1 col-xs-2"src="imagenes/blanco-mini.png" alt="">
+				<h1 class="principal col-lg-10 col-md-10 col-xs-8 ">Recuperar contraseña</h1>
+				<img class="col-lg-1 col-md-1 col-xs-2"src="imagenes/blanco-mini.png" alt="">
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-lg-4 col-md-4 col-xs-4"></div>
+			<div class="col-lg-4 col-md-4 col-xs-4">
+				<form class="registro">
+					<label for="inputEmail" class="formtext">E-mail</label>
+        				<input type="email" id="inputEmail" class="form-control resalta" placeholder="Correo asociado" onChange="validar()" required>
+
+        				<label for="inputPassword" class="formtext">Nueva contraseña</label>
+        				<input type="password" id="inputPassword" class="form-control resalta" placeholder="Nueva contraseña" onChange="validar()" required>
+
+					<label for="confirmPassword" class="formtext">Confirmar contraseña</label>
+        				<input type="password" class="form-control resalta" id="inputPasswordConfirm" data-match="#inputPassword" data-match-error="Whoops, these don't match" placeholder="Confirma" onChange="validar()" required>
+
+					<button type="submint" class="btn btn-lg btn-primary botonregistro" onClick="verifica(this)">Recuperar</button>
+				</form>
+			</div>
+			<div class="col-lg-4 col-md-4 col-xs-4"></div>
+		</div>
+	</div>
+	
+	<!-- MARCA -->
+
+	<?php include 'footer.php';?>
+</body>
+</html>

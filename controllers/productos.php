@@ -33,7 +33,7 @@
 				"@@Title@@"=>$coleccion['Coleccion_Titulo'],
 				"@@ListaProductos@@"=>$productos_string,
 				"@@Footer@@"=>$this->getFilledTemplate('footer'),
-				"@@Header@@"=>$this->getFilledTemplate('header')
+				"@@Header@@"=>$this->getHeader()
 			);
 			echo $this->getFilledTemplate('coleccion',$datos);
 		}
@@ -48,7 +48,7 @@
 						"@@PrecioProducto@@"=>$opciones['Precio'],
 						"@@ImagenProducto@@"=>$opciones['img']
 					);
-					$producto_coleccion_view=$this->getFilledTemplate('producto_coleccion_genero',$datos);
+					$producto_coleccion_view=$this->getFilledTemplate('producto_coleccion',$datos);
 					$productos_string.=$producto_coleccion_view;
 				}
 			}
@@ -59,7 +59,7 @@
 				"@@Title@@"=>$coleccion['Coleccion_Titulo'],
 				"@@ListaProductos@@"=>$productos_string,
 				"@@Footer@@"=>$this->getFilledTemplate('footer'),
-				"@@Header@@"=>$this->getFilledTemplate('header')
+				"@@Header@@"=>$this->getHeader()
 			);
 			echo $this->getFilledTemplate('coleccion_genero',$datos);
 		}
@@ -74,7 +74,7 @@
 						"@@PrecioProducto@@"=>$opciones['Precio'],
 						"@@ImagenProducto@@"=>$opciones['img']
 					);
-					$producto_coleccion_view=$this->getFilledTemplate('producto_coleccion_genero',$datos);
+					$producto_coleccion_view=$this->getFilledTemplate('producto_coleccion',$datos);
 					$productos_string.=$producto_coleccion_view;
 				}
 			}
@@ -85,7 +85,7 @@
 				"@@Title@@"=>$coleccion['Coleccion_Titulo'],
 				"@@ListaProductos@@"=>$productos_string,
 				"@@Footer@@"=>$this->getFilledTemplate('footer'),
-				"@@Header@@"=>$this->getFilledTemplate('header')
+				"@@Header@@"=>$this->getHeader()
 			);
 			echo $this->getFilledTemplate('coleccion_genero',$datos);
 		}
@@ -104,7 +104,7 @@
 						"@@ProductoImg2@@"=>$producto['Img2'],
 						"@@ProductoImg3@@"=>$producto['Img3'],
 						"@@ProductoDescripcion@@"=>$producto['Descripcion'],
-						"@@Header@@"=>$this->getFilledTemplate('header'),
+						"@@Header@@"=>$this->getHeader(),
 						"@@Footer@@"=>$this->getFilledTemplate('footer')
 					);
 					echo $this->getFilledTemplate('detalle-producto',$datos);

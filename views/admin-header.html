@@ -1,5 +1,4 @@
-<?php
-	echo'<nav role="navigation" class="navbar navbar-inverse navbar-fixed-top " id="main-navbar">
+<nav role="navigation" class="navbar navbar-inverse navbar-fixed-top " id="main-navbar">
 		        <!-- Menu vista movil -->
 		        <div class="navbar-header">
 		            <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
@@ -8,7 +7,7 @@
 		                <span class="icon-bar"></span>
 		                <span class="icon-bar"></span>
 		            </button>
-		            <a class="navbar-brand" href="index.php">Vestiario</a>
+		            <a class="navbar-brand" href="?ctl=admin">Vestiario</a>
 		        </div>
 		        <!-- Menu contenido-->
 
@@ -17,29 +16,16 @@
 		            	<li class="dropdown">
 		                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">Administrar<b class="caret"></b></a>
 		                    <ul role="menu" class="dropdown-menu ">
-		                        <li><a href="#">Pedidos</a></li>
-		                        <li><a href="#">Usuarios</a></li>
-		                        <li><a href="#">Colecciones</a></li>
+		                        <li><a href="?ctl=admin&act=pedidos">Pedidos</a></li>
+		                        <li><a href="?ctl=admin&act=usuarios">Usuarios</a></li>
+		                        <li><a href="?ctl=admin&act=colecciones">Colecciones</a></li>
 		                    </ul>
 		                </li>
-		                <li><a href="admineditarproductos.php">Editar Productos</a></li>
-		                <li><a href="#"><i class="fa fa-shopping-cart"></i> Pedidos</a></li>
+		                <li><a href="?ctl=admin&act=editarProductos">Editar Productos</a></li>
 		            </ul>
 		      		
 		            <ul class="nav navbar-nav navbar-right">
-						<li><a href="registro.php">Registrarse</a></li>
-	                  	<li class="divider-vertical"></li>
-						<li class="dropdown">
-							<a class="dropdown-toggle" href="#" data-toggle="dropdown">Iniciar sesión <strong class="caret"></strong></a>
-							<div class="dropdown-menu">
-								<form method="post" action="login" accept-charset="UTF-8" >
-									<input type="text" placeholder="Usuario" id="username" name="username">
-									<input  type="password" placeholder="Contraseña" id="password" name="password">
-									<input class="btn btn-default btn-sm btn-block" type="submit" id="login" value="Iniciar sesión">
-								</form>
-							</div>
-						</li>
+						<li><a href="?ctl=home&act=logout">Cerrar sesión</a></li>
 					</ul>
 		        </div><!--/Menu contenido-->
-		    </nav>';
-?>
+		    </nav>

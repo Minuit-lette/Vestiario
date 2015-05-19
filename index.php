@@ -1,5 +1,7 @@
 <?php
+	session_start();
 	require_once('controllers/basecontroller.php');
+	require_once('models/basemodel.php');
 	if(!isset($_GET['ctl']) && !isset($_GET['act'])){
 		require_once('controllers/home.php');
 		$controlador=new Home;

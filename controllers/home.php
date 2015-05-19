@@ -31,6 +31,32 @@
 					);
 				}
 			}
+			else if($this->validateExists($_POST,array("sessionuser","sessionpassword"))){
+				if($this->validateArrayTypes($_POST,array("sessionuser"=>"email","sessionpassword"=>"password"))){
+					$datos=array(
+						"email"=>$_POST['sessionuser'],
+						"password"=>$_POST['sessionpassword']
+					);
+					$exito=$this->model->login($datos);
+					if($exito){
+						$datos_modal=array(
+							"@@ModalError@@"=>$this->getFilledTemplate("modalerror",array("@@Error@@"=>"Iniciaste sesión de forma exitosa"))
+						);
+						if($this->model->userIsAdmin())
+							$this->redirect("admin","productos");
+					}
+					else{
+						$datos_modal=array(
+							"@@ModalError@@"=>$this->getFilledTemplate("modalerror",array("@@Error@@"=>"Datos de inicio de sesión incorrectos"))
+						);
+					}
+				}
+				else{
+					$datos_modal=array(
+						"@@ModalError@@"=>$this->getFilledTemplate("modalerror",array("@@Error@@"=>"Datos inválidos"))
+					);
+				}
+			}
 			$lista=$this->model->listarColecciones();
 			$colecciones_string="";
 			foreach($lista as $nombre=>$opciones){
@@ -43,7 +69,7 @@
 				$colecciones_string.=$this->getFilledTemplate('coleccion_descripcion',$datos);
 			}
 			$datos=array(
-				"@@Header@@"=>$this->getFilledTemplate("header"),
+				"@@Header@@"=>$this->getHeader(),
 				"@@ListaColecciones@@"=>$colecciones_string,
 				"@@Footer@@"=>$this->getFilledTemplate("footer")
 			) + $datos_modal;
@@ -51,17 +77,17 @@
 		}
 		
 		public function registrar(){
-			if($this->validateExists($_POST,array("password","email","cpassword","usuario"))){
-				if($this->validateArrayTypes($_POST,array("password"=>"password","email"=>"email","cpassword"=>"password","usuario"=>"user"))){
+			if($this->validateExists($_POST,array("password","email","cpassword","nombre"))){
+				if($this->validateArrayTypes($_POST,array("password"=>"password","email"=>"email","cpassword"=>"password","nombre"=>"name"))){
 					$datos=array(
-						"usuario"=>$_POST['usuario'],
+						"nombre"=>$_POST['nombre'],
 						"email"=>$_POST['email'],
 						"password"=>$_POST['password']
 					);
 					$exito=$this->model->guardarUsuario($datos);
 					if($exito){
 						$datos=array(
-							"@@Header@@"=>$this->getFilledTemplate("header"),
+							"@@Header@@"=>$this->getHeader(),
 							"@@Footer@@"=>$this->getFilledTemplate("footer"),
 							"@@Errores@@"=>$this->getFilledTemplate("errores",array("@@Error@@"=>"Usuario creado de forma exitosa"))
 						);
@@ -69,16 +95,16 @@
 					}
 					else{
 						$datos=array(
-							"@@Header@@"=>$this->getFilledTemplate("header"),
+							"@@Header@@"=>$this->getHeader(),
 							"@@Footer@@"=>$this->getFilledTemplate("footer"),
-							"@@Errores@@"=>$this->getFilledTemplate("errores",array("@@Error@@"=>"El usuario ya existe"))
+							"@@Errores@@"=>$this->getFilledTemplate("errores",array("@@Error@@"=>"El correo ya existe"))
 						);
 						echo $this->getFilledTemplate("registro",$datos);
 					}
 				}
 				else{
 					$datos=array(
-						"@@Header@@"=>$this->getFilledTemplate("header"),
+						"@@Header@@"=>$this->getHeader(),
 						"@@Footer@@"=>$this->getFilledTemplate("footer"),
 						"@@Errores@@"=>$this->getFilledTemplate("errores",array("@@Error@@"=>"Tipos inválidos de datos"))
 					);
@@ -88,7 +114,7 @@
 			
 			else{
 				$datos=array(
-					"@@Header@@"=>$this->getFilledTemplate("header"),
+					"@@Header@@"=>$this->getHeader(),
 					"@@Footer@@"=>$this->getFilledTemplate("footer"),
 					"@@Errores@@"=>""
 				);
@@ -108,7 +134,7 @@
 					$exito=$this->model->guardarUsuario($datos);
 					if($exito){
 						$datos=array(
-							"@@Header@@"=>$this->getFilledTemplate("header"),
+							"@@Header@@"=>$this->getHeader(),
 							"@@Footer@@"=>$this->getFilledTemplate("footer"),
 							"@@Errores@@"=>$this->getFilledTemplate("errores",array("@@Error@@"=>"Mensaje enviado de forma exitosa"))
 						);
@@ -116,7 +142,7 @@
 					}
 					else{
 						$datos=array(
-							"@@Header@@"=>$this->getFilledTemplate("header"),
+							"@@Header@@"=>$this->getHeader(),
 							"@@Footer@@"=>$this->getFilledTemplate("footer"),
 							"@@Errores@@"=>$this->getFilledTemplate("errores",array("@@Error@@"=>"El mensaje no pudo ser enviado, intente nuevamente después"))
 						);
@@ -125,7 +151,7 @@
 				}
 				else{
 					$datos=array(
-						"@@Header@@"=>$this->getFilledTemplate("header"),
+						"@@Header@@"=>$this->getHeader(),
 						"@@Footer@@"=>$this->getFilledTemplate("footer"),
 						"@@Errores@@"=>$this->getFilledTemplate("errores",array("@@Error@@"=>"Tipos inválidos de datos"))
 					);
@@ -135,7 +161,7 @@
 			
 			else{
 				$datos=array(
-					"@@Header@@"=>$this->getFilledTemplate("header"),
+					"@@Header@@"=>$this->getHeader(),
 					"@@Footer@@"=>$this->getFilledTemplate("footer"),
 					"@@Errores@@"=>""
 				);
@@ -146,7 +172,7 @@
 		
 		public function acercade(){
 			$datos=array(
-				"@@Header@@"=>$this->getFilledTemplate("header"),
+				"@@Header@@"=>$this->getHeader(),
 				"@@Footer@@"=>$this->getFilledTemplate("footer")
 			);
 			echo $this->getFilledTemplate("acercaDe",$datos);
@@ -162,7 +188,7 @@
 					$exito=$this->model->cambiarPassword($datos);
 					if($exito){
 						$datos=array(
-							"@@Header@@"=>$this->getFilledTemplate("header"),
+							"@@Header@@"=>$this->getHeader(),
 							"@@Footer@@"=>$this->getFilledTemplate("footer"),
 							"@@Errores@@"=>$this->getFilledTemplate("errores",array("@@Error@@"=>"Mensaje enviado de forma exitosa"))
 						);
@@ -170,7 +196,7 @@
 					}
 					else{
 						$datos=array(
-							"@@Header@@"=>$this->getFilledTemplate("header"),
+							"@@Header@@"=>$this->getHeader(),
 							"@@Footer@@"=>$this->getFilledTemplate("footer"),
 							"@@Errores@@"=>$this->getFilledTemplate("errores",array("@@Error@@"=>"El mensaje no pudo ser enviado, verifica que el correo sea correcto y exista"))
 						);
@@ -179,7 +205,7 @@
 				}
 				else{
 					$datos=array(
-						"@@Header@@"=>$this->getFilledTemplate("header"),
+						"@@Header@@"=>$this->getHeader(),
 						"@@Footer@@"=>$this->getFilledTemplate("footer"),
 						"@@Errores@@"=>$this->getFilledTemplate("errores",array("@@Error@@"=>"Tipos inválidos de datos"))
 					);
@@ -188,12 +214,17 @@
 			}
 			else{
 				$datos=array(
-					"@@Header@@"=>$this->getFilledTemplate("header"),
+					"@@Header@@"=>$this->getHeader(),
 					"@@Footer@@"=>$this->getFilledTemplate("footer"),
 					"@@Errores@@"=>""
 				);
 				echo $this->getFilledTemplate("recuperarContra",$datos);
 			}
+		}
+		
+		public function logout(){
+			$this->model->unsetSession('user');
+			$this->redirect("home","mostrarIndice");
 		}
 	}
 ?>

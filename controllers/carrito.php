@@ -25,7 +25,7 @@
 				$productos_string.=$this->getFilledTemplate("carrito_producto",$datos);
 			}
 			$datos=array(
-				"@@Header@@"=>$this->getFilledTemplate("header"),
+				"@@Header@@"=>$this->getHeader(),
 				"@@Footer@@"=>$this->getFilledTemplate("footer"),
 				"@@ListaProductos@@"=>$productos_string,
 				"@@Subtotal@@"=>$carrito['Subtotal'],

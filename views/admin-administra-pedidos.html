@@ -1,0 +1,148 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Vestiario</title>
+	<link rel="stylesheet" href="font-awesome-4.3.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/estilo.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+
+</head>
+<body class="body-admin">
+
+	@@AdminHeader@@
+	<script  type="text/javascript">
+		$(document).ready(function(){
+			$('.dropdown-menu').find('form').click(function (e) {
+        		e.stopPropagation();
+			});
+		});
+		
+		$(window).resize(function () { 
+    		$('body').css('padding-top', parseInt($('#main-navbar').css("height"))+10);
+		});
+
+		$(window).load(function () { 
+		    $('body').css('padding-top', parseInt($('#main-navbar').css("height"))+10);        
+		});
+    </script>
+
+	<div class="container " id="edicionbanner">
+		<div class="row">
+			<div class="col-lg-12 col-md-12 col-xs-12">
+				<img class="col-lg-1 col-md-1 col-xs-2"src="imagenes/blanco-mini.png" alt="">
+				<h1 class="principal col-lg-10 col-md-10 col-xs-8 ">ADMINISTRAR PEDIDOS</h1>
+				<img class="col-lg-1 col-md-1 col-xs-2"src="imagenes/blanco-mini.png" alt="">
+			</div>
+		</div>
+	</div>
+
+	<div class="container well" id="ediciontabla">
+		<div class="row">
+			<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-xs-8 col-xs-offset-2 center">
+
+				<div class="panel panel-default">
+					<div class="admin-edit-panel-heading">
+						<h3 class="panel-title admin-edit-paneltitle">Criterio de búsqueda</h3>
+					</div>
+
+					<div class="panel-body">
+						<!-- FORM DE BÚSQUEDA POR CRITERIO AQUÍ -->
+						<form id="busqueda">
+							<label for="buscar">Buscar</label>
+							<input type="text" class="form-control resalta"></input>
+							<select class="form-control resalta">
+								<option selected value="1">ID de pedido</option>
+								<option value="2">Nombre de usuario</option>
+								<option value="3">El Pedido contiene este ID de objeto</option>
+							</select>
+
+						<div class="center">
+							<button type="button" class="btn btn-lg btn-primary blackbtn">Ir</button>
+						</div>
+						</form>
+					</div>
+				</div>
+
+				<div class="panel panel-default">
+					<div class="admin-edit-panel-heading">
+						<h3 class="panel-title admin-edit-paneltitle">Mostrar</h3>
+					</div>
+
+					<div class="panel-body">
+						<!-- FORM DE BÚSQUEDA CONCRETA AQUÍ -->
+						<div class="center">
+							<button type="button" class="btn btn-lg btn-primary blackbtn">Pedidos pendientes</button>
+							<button type="button" class="btn btn-lg btn-primary blackbtn">Pedidos cerrados</button>
+							<button type="button" class="btn btn-lg btn-primary blackbtn">Pedidos cancelados</button>
+						</div>
+					</div>
+				</div>
+
+					<div class="limpia"></div>
+
+				<!-- Marca -->
+
+				<div id="mensajebusqueda">
+						<span class="ital">Se muestran <span class="bol">los pedidos cancelados</span></span>
+				</div>
+
+				<table id="itemadmintable" class="table">
+					<thead>
+						<th>ID</th>
+						<th>Nombre de usuario</th>
+						<th>Fecha expedición</th>
+						<th>Fecha cierre</th>
+						<th>Encargado</th>
+						<th>Estatus</th>
+						<th>Notas</th>
+					</thead>
+					
+					<tr>
+						<td>208790</td>
+						<td>Minuit-lette</td>
+						<td>20 Agosto 2014</td>
+						<td>21 Agosto 2014</td>
+						<td>Arlette Parra</td>
+						<td><span class="cancelado">CANCELADO</span></td>
+						<td>La tarjeta se encontraba en su fecha de corte</td>
+					</tr>
+
+					<tr>
+						<td>205690</td>
+						<td>Dorokof</td>
+						<td>19 Abril 2015</td>
+						<td>21 Abril 2015</td>
+						<td>Eduardo Ledezma</td>
+						<td><span class="cancelado">CANCELADO</span></td>
+						<td>El descuento de "Camisa Vestial" terminó un día después a la expedición del pedido y antes que el usuario facturara, por lo que este optó por cancelarlo</td>
+					</tr>
+
+					<tr>
+						<td>218930</td>
+						<td>barucE</td>
+						<td>20 Abril 2015</td>
+						<td>20 Abril 2015</td>
+						<td>Baruc Espinosa</td>
+						<td><span class="cancelado">CANCELADO</span></td>
+						<td>El usuario no proporcionó información</td>
+					</tr>
+
+					<tr>
+						<td>205240</td>
+						<td>Pinsec</td>
+						<td>22 Abril 2015</td>
+						<td>22 Abril 2015</td>
+						<td>Walter Espinoza Fuerte</td>
+						<td><span class="cancelado">CANCELADO</span></td>
+						<td>El pedido se había expedido con 1000 "Camisas negras", el usuario sólo quería una.</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

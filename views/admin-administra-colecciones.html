@@ -1,0 +1,144 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Vestiario</title>
+	<link rel="stylesheet" href="font-awesome-4.3.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/estilo.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+
+</head>
+<body class="body-admin">
+
+	@@AdminHeader@@
+	<script  type="text/javascript">
+		$(document).ready(function(){
+			$('.dropdown-menu').find('form').click(function (e) {
+        		e.stopPropagation();
+			});
+		});
+		
+		$(window).resize(function () { 
+    		$('body').css('padding-top', parseInt($('#main-navbar').css("height"))+10);
+		});
+
+		$(window).load(function () { 
+		    $('body').css('padding-top', parseInt($('#main-navbar').css("height"))+10);        
+		});
+    </script>
+
+	<div class="container " id="edicionbanner">
+		<div class="row">
+			<div class="col-lg-12 col-md-12 col-xs-12">
+				<img class="col-lg-1 col-md-1 col-xs-2"src="imagenes/blanco-mini.png" alt="">
+				<h1 class="principal col-lg-10 col-md-10 col-xs-8 ">ADMINISTRAR COLECCIONES</h1>
+				<img class="col-lg-1 col-md-1 col-xs-2"src="imagenes/blanco-mini.png" alt="">
+			</div>
+		</div>
+	</div>
+
+	<div class="container well" id="ediciontabla">
+		<div class="row">
+			<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-xs-8 col-xs-offset-2 center">
+
+				<form id="busqueda">
+					<div class="mov">
+						<div>
+							<label for="buscar">Buscar producto: <label>
+						</div>
+						<div>
+							<input id="buscar" type="text" class="form-control resalta"></input>
+						</div>
+					</div>
+
+					<div class="mov">
+						<div>
+							<label for="porcolec">Mostrar: <label>
+						</div>
+						<div>
+							<select id="porcolec" class="form-control resalta">
+								<option value="0">Todos los objetos</option>
+								<option selected value="1">Colección hombre</option>
+								<option value="1">Colección mujer</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="mov">
+						<button type="button" class="btn btn-lg btn-primary blackbtn">Ir</button>
+					</div>
+
+					<div class="limpia"></div>
+
+				</form>
+
+				<div id="mensajebusqueda">
+						<span class="ital">Se muestra: "<span class="bol">Colección hombre</span>"</span>
+				</div>
+
+				<table id="itemadmintable" class="table">
+					<thead>
+						<th>ID</th>
+						<th>Imagen</th>
+						<th>Nombre</th>
+						<th>Colección</th>
+						<th>Editar</th>
+					</thead>
+					
+					<tr>
+						<td> <span>27</span> </td>
+						<td> <img src="imagenes/prenda.png"> </td>
+						<td> <span>Camisa negra</span> </td>
+						<td>
+							<form>
+								<select class="form-control resalta">
+									<option selected value="1">Colección hombre</option>
+									<option value="1">Colección mujer</option>
+								</select>
+							<form>
+						</td>
+						<td> <button type="button" class="btn btn-lg btn-primary botonregistro"> Editar </button> </td>
+					</tr>
+
+					<tr>
+						<td> <span>36</span> </td>
+						<td> <img src="imagenes/camisacool.jpg"> </td>
+						<td> <span>Camisa vestial</span> </td>
+						<td>
+							<form>
+								<select class="form-control resalta">
+									<option selected value="1">Colección hombre</option>
+									<option value="1">Colección mujer</option>
+								</select>
+							<form>
+						</td>
+						<td> <button type="button" class="btn btn-lg btn-primary botonregistro"> Editar </button> </td>
+					</tr>
+
+					<tr>
+						<td> <span>56</span> </td>
+						<td> <img src="imagenes/taprab.jpg"> </td>
+						<td> <span>Camisa con taparabo largo</span> </td>
+						<td>
+							<form>
+								<select class="form-control resalta">
+									<option selected value="1">Colección hombre</option>
+									<option value="1">Colección mujer</option>
+								</select>
+							<form>
+						</td>
+						<td> <button type="button" class="btn btn-lg btn-primary botonregistro"> Editar </button> </td>
+					</tr>
+				</table>
+
+				<button id="admin-alta" type="button" class="btn btn-lg btn-primary blackbtn">Validar</button>
+			</div>
+		</div>
+	</div>
+
+	
+</body>
+</html>

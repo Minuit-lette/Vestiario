@@ -1,5 +1,5 @@
 <?php
-	class HomeModel{
+	class HomeModel extends BaseModel{
 		public function listarColecciones(){
 			$listaColecciones=array(
 				"Coleccion A"=>
@@ -32,13 +32,20 @@
 		}
 		
 		public function guardarUsuario($datos){
-			$usuarios=array("dokorof2","dokorof3");
-			foreach($usuarios as $usuario){
-				if($usuario==$datos['usuario'])//usuario existe fake
-					return false;
+			$datos=$this->clean($datos);
+			extract($datos);
+			$res=$this->db->query("SELECT COUNT(*) as Cantidad FROM usuarios WHERE Correo='$email' AND Clase='Usuario'");
+			$cant=$res->fetch_assoc();
+			$res->free();
+			if($cant['Cantidad']==0){
+				$this->db->query("
+								INSERT INTO usuarios(Nombre,Correo,Password,Clase) VALUES('$nombre','$email','$password','Usuario')
+								");
+				if($this->db->affected_rows>0)
+					return true;
+				return false;
 			}
-			//Insertar en la base
-			return true;
+			return false;
 		}
 		
 		public function enviarContacto($datos){
@@ -65,6 +72,8 @@
 			//Insertar en la base
 			return false;
 		}
+		
+		
 	}
 
 ?>

@@ -1,5 +1,5 @@
 <?php
-	class CarritoModel{
+	class CarritoModel extends BaseModel{
 		public function getCarrito(){
 			$carrito=array(
 				"Productos"=>array(

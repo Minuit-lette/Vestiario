@@ -2,6 +2,10 @@
 	class BaseController{
 		protected $defaultMethod;
 		protected $model;
+		public function redirect($ctl,$method){
+			header("Location: ?ctl=".$ctl."&act=".$method);
+			die();
+		}
 		public function run(){
 			$metodo=$this->defaultMethod;
 			if(!(isset($_GET['act']) && method_exists(get_class($this),$_GET['act'])))
@@ -61,6 +65,14 @@
 		}
 		public function show404(){
 			echo $this->getFilledTemplate('404');
+		}
+		
+		public function getHeader(){
+			if($this->model->loggedIn()){
+				return $this->getFilledTemplate("header",array("@@Usuario@@"=>$this->getFilledTemplate("sesion-abierta")));
+			}
+			else
+				return $this->getFilledTemplate("header",array("@@Usuario@@"=>$this->getFilledTemplate("sesion-cerrada")));
 		}
 	}
 

@@ -40,6 +40,12 @@
 					
 				case 'text':
 					return true;
+					
+				case 'usertype':
+					return ($value=='Usuario' || $value=='Admin');
+				
+				case 'optionalPassword':
+					return ($value=='' || $this->validate($value,'password'));
 			}
 			return false;
 		}

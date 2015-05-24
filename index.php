@@ -1,5 +1,9 @@
 <?php
 	session_start();
+	/*Load libs*/
+		require_once('libs/PHPMailer/PHPMailerAutoload.php');
+		require_once('config/mail-opt.inc');
+	/*End Load Libs*/
 	require_once('controllers/basecontroller.php');
 	require_once('models/basemodel.php');
 	if(!isset($_GET['ctl']) && !isset($_GET['act'])){

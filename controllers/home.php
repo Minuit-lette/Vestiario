@@ -43,7 +43,7 @@
 							"@@ModalError@@"=>$this->getFilledTemplate("modalerror",array("@@Error@@"=>"Iniciaste sesión de forma exitosa"))
 						);
 						if($this->model->userIsAdmin())
-							$this->redirect("admin","productos");
+							$this->redirect("admin","home");
 					}
 					else{
 						$datos_modal=array(
@@ -78,7 +78,7 @@
 		
 		public function registrar(){
 			if($this->validateExists($_POST,array("password","email","cpassword","nombre"))){
-				if($this->validateArrayTypes($_POST,array("password"=>"password","email"=>"email","cpassword"=>"password","nombre"=>"name"))){
+				if($this->validateArrayTypes($_POST,array("password"=>"password","email"=>"email","cpassword"=>"password","nombre"=>"name")) && $_POST['password']==$_POST['cpassword']){
 					$datos=array(
 						"nombre"=>$_POST['nombre'],
 						"email"=>$_POST['email'],
@@ -127,11 +127,12 @@
 			if($this->validateExists($_POST,array("nombre","apellidos","email","mensaje"))){
 				if($this->validateArrayTypes($_POST,array("nombre"=>"name","email"=>"email","apellidos"=>"name","mensaje"=>"text"))){
 					$datos=array(
-						"usuario"=>$_POST['usuario'],
+						"nombre"=>$_POST['nombre'],
 						"email"=>$_POST['email'],
-						"password"=>$_POST['password']
+						"apellidos"=>$_POST['apellidos'],
+						"mensaje"=>$_POST['mensaje']
 					);
-					$exito=$this->model->guardarUsuario($datos);
+					$exito=$this->model->enviarContacto($datos);
 					if($exito){
 						$datos=array(
 							"@@Header@@"=>$this->getHeader(),

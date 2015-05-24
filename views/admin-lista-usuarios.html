@@ -34,7 +34,7 @@
 		<div class="row">
 			<div class="col-lg-12 col-md-12 col-xs-12">
 				<img class="col-lg-1 col-md-1 col-xs-2"src="imagenes/blanco-mini.png" alt="">
-				<h1 class="principal col-lg-10 col-md-10 col-xs-8 ">USUARIOS</h1>
+				<h1 class="principal col-lg-10 col-md-10 col-xs-8 ">Usuarios</h1>
 				<img class="col-lg-1 col-md-1 col-xs-2"src="imagenes/blanco-mini.png" alt="">
 			</div>
 		</div>
@@ -46,21 +46,16 @@
 
 				<div class="panel panel-default">
 					<div class="admin-edit-panel-heading">
-						<h3 class="panel-title admin-edit-paneltitle">Criterio de búsqueda</h3>
+						<h3 class="panel-title admin-edit-paneltitle">Búsqueda</h3>
 					</div>
 
 					<div class="panel-body">
 						<!-- FORM DE BÚSQUEDA POR CRITERIO AQUÍ -->
-						<form id="busqueda">
-							<label for="buscar">Buscar</label>
-							<input type="text" value="Minuit_lette" class="form-control resalta"></input>
-							<select class="form-control resalta">
-								<option selected value="1">Nombre de usuario</option>
-								<option value="2">Correo electrónico</option>
-							</select>
-
+						<form id="busqueda" action="?ctl=admin&act=usuarios" method="POST">
+							<label for="buscar">Escribe el correo del usuario</label>
+							<input type="text" name="busqueda" class="form-control resalta"/>
 						<div class="center">
-							<button type="button" class="btn btn-lg btn-primary blackbtn">Ir</button>
+							<button type="submit" class="btn btn-lg btn-primary blackbtn">Ir</button>
 						</div>
 						</form>
 					</div>
@@ -69,83 +64,10 @@
 				<div class="limpia"></div>
 
 				<!-- Marca -->
+				@@MensajeBusqueda@@
+				
 
-				<p id="mensaje_busqueda">Se muestra resultado para <span class="bol">"Minuit_lette"</span></p>
-
-				<!-- ID -->
-				<form>
-				<div class="panel panel-default">
-					<div class="admin-edit-panel-heading">
-						<h3 class="panel-title admin-edit-paneltitle">ID</h3>
-					</div>
-
-					<div class="panel-body">
-						<input type="number" readonly="" value="4802" class="form-control resalta">
-					</div>
-				</div>
-
-				<!-- ANTIGÜEDAD -->
-				<div class="panel panel-default">
-					<div class="admin-edit-panel-heading">
-						<h3 class="panel-title admin-edit-paneltitle">Antigüedad</h3>
-					</div>
-
-					<div class="panel-body">
-						<input type="text" readonly="" value="20 - Abril - 2015" class="form-control resalta">
-					</div>
-				</div>
-
-				<!-- USERNAME -->
-				<div class="panel panel-default">
-					<div class="admin-edit-panel-heading">
-						<h3 class="panel-title admin-edit-paneltitle">Nombre de usuario</h3>
-					</div>
-
-					<div class="panel-body">
-						<input type="text" value="Minuit_lette" class="form-control resalta">
-					</div>
-				</div>
-
-				<!-- USERNAME -->
-				<div class="panel panel-default">
-					<div class="admin-edit-panel-heading">
-						<h3 class="panel-title admin-edit-paneltitle">Correo electrónico</h3>
-					</div>
-
-					<div class="panel-body">
-						<input type="text" value="Destroyer_queen@hotmail.com" class="form-control resalta">
-					</div>
-				</div>
-
-				<!-- CONTRASEÑA -->
-				<div class="panel panel-default">
-					<div class="admin-edit-panel-heading">
-						<h3 class="panel-title admin-edit-paneltitle">Contraseña</h3>
-					</div>
-
-					<div class="panel-body">
-						<input type="text" value="patitofeo123" class="form-control resalta">
-					</div>
-				</div>
-
-				<!-- PRIVILEGIOS -->
-				<div class="panel panel-default">
-					<div class="admin-edit-panel-heading">
-						<h3 class="panel-title admin-edit-paneltitle">Privilegios</h3>
-					</div>
-					<div class="panel-body">
-						<select id="porcolec" class="form-control resalta">
-							<option selected value="0">Común</option>
-							<option value="1">Administrador</option>
-						</select>
-					</div>
-				</div>
-
-				<div class="center">
-					<button id="admin-alta" type="button" class="btn btn-lg btn-primary blackbtn">Validar</button>
-				</div>				
-
-				</form>
+				@@ResultadoBusqueda@@
 			</div>
 		</div>
 	</div>

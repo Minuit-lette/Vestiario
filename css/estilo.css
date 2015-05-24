@@ -280,3 +280,12 @@ input{
 	border: 1px solid black;
 	background-color: #A30A0A
 }
+
+.cancelado{
+	font-weight: bold;
+	color: #A30A0A;
+}
+
+.resumen{
+	color: black;
+}

@@ -1,0 +1,52 @@
+<form action="?ctl=admin&act=usuarios" method="POST">
+<div class="panel panel-default">
+	<div class="admin-edit-panel-heading">
+		<h3 class="panel-title admin-edit-paneltitle">Nombre Completo</h3>
+	</div>
+
+	<div class="panel-body">
+		<input type="text" name="nombre" value="@@NombreUsuario@@" class="form-control resalta">
+	</div>
+</div>
+<!-- USERNAME -->
+<div class="panel panel-default">
+	<div class="admin-edit-panel-heading">
+		<h3 class="panel-title admin-edit-paneltitle">Correo electrónico</h3>
+	</div>
+
+	<div class="panel-body">
+		<input type="text" name="email" readonly value="@@CorreoUsuario@@" class="form-control resalta">
+	</div>
+</div>
+
+<!-- CONTRASEÑA -->
+<div class="panel panel-default">
+	<div class="admin-edit-panel-heading">
+		<h3 class="panel-title admin-edit-paneltitle">Nueva Contraseña (Si se deja en blanco no se modifica la anterior)</h3>
+	</div>
+
+	<div class="panel-body">
+		<input type="password" name="password" class="form-control resalta">
+	</div>
+</div>
+
+<!-- PRIVILEGIOS -->
+<div class="panel panel-default">
+	<div class="admin-edit-panel-heading">
+		<h3 class="panel-title admin-edit-paneltitle">Privilegios</h3>
+	</div>
+	<div class="panel-body">
+		<select id="porcolec" name="tipo" class="form-control resalta">
+			<option selected value="Usuario" @@TipoUsuario@@>Común</option>
+			<option value="Admin" @@TipoAdmin@@>Administrador</option>
+		</select>
+	</div>
+</div>
+
+
+<div class="center">
+	<button id="admin-alta" type="submit" class="btn btn-lg btn-primary blackbtn">Validar</button>
+</div>
+
+
+</form>

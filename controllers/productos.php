@@ -9,7 +9,7 @@
 		public function listar(){
 			$coleccion=array();
 			if(!isset($_GET['id']))
-				$coleccion=$this->model->listar(null);
+				$coleccion=$this->model->listar();
 			else if($this->validate($_GET['id'],"int")){
 				$coleccion=$this->model->listar($_GET['id']);
 			}
@@ -27,7 +27,7 @@
 					$productos_string.=$producto_coleccion_view;
 				}
 			}
-			if(count($coleccion)==0)
+			if(count($coleccion['Productos'])==0)
 				$coleccion=array("Coleccion_Titulo"=>"No se encontraron resultados");
 			$datos=array(
 				"@@Title@@"=>$coleccion['Coleccion_Titulo'],
@@ -52,10 +52,9 @@
 					$productos_string.=$producto_coleccion_view;
 				}
 			}
-			if(count($coleccion)==0)
+			if(count($coleccion['Productos'])==0)
 				$coleccion=array("Coleccion_Titulo"=>"No se encontraron resultados");
 			$datos=array(
-				"@@Genero@@"=>"Hombre",
 				"@@Title@@"=>$coleccion['Coleccion_Titulo'],
 				"@@ListaProductos@@"=>$productos_string,
 				"@@Footer@@"=>$this->getFilledTemplate('footer'),
@@ -78,10 +77,9 @@
 					$productos_string.=$producto_coleccion_view;
 				}
 			}
-			if(count($coleccion)==0)
+			if(count($coleccion['Productos'])==0)
 				$coleccion=array("Coleccion_Titulo"=>"No se encontraron resultados");
 			$datos=array(
-				"@@Genero@@"=>"Mujer",
 				"@@Title@@"=>$coleccion['Coleccion_Titulo'],
 				"@@ListaProductos@@"=>$productos_string,
 				"@@Footer@@"=>$this->getFilledTemplate('footer'),

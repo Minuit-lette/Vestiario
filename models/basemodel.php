@@ -14,6 +14,10 @@
 			return $cleanData;
 		}
 		
+		public function cleanSingle($data){
+			return $this->db->real_escape_string($data);
+		}
+		
 		public function setSession($position,$values){
 			$_SESSION[$position]=$values;
 		}

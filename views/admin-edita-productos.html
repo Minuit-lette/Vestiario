@@ -13,7 +13,7 @@
 </head>
 <body>
 
-	@@AdminHeader@@
+	<?php include 'admin-header.php';?>
 
     <script type="text/javascript">
     	$(document).ready(function(){
@@ -138,7 +138,7 @@
 
 				<div class="panel panel-default">
 					<div class="admin-edit-panel-heading">
-						<h3 class="panel-title admin-edit-paneltitle">Imagen</h3>
+						<h3 class="panel-title admin-edit-paneltitle">Imagen principal</h3>
 					</div>
 					<div class="panel-body center">
 						<div>
@@ -152,12 +152,35 @@
 
 				<div class="panel panel-default">
 					<div class="admin-edit-panel-heading">
+						<h3 class="panel-title admin-edit-paneltitle">Previsualizaciones</h3>
+					</div>
+
+					<!-- Div a reptir -->
+					<div id="div-repeat_1" class="panel-body center">
+						<div class="previewdiv">
+							<img id ="prev_1" src="imagenes/prev-log.jpg">
+							<div>
+								<button type="button" class="btn btn-lg btn-primary blackbtn">Modificar</button>
+								<button type="button" class="btn btn-lg btn-primary blackbtn">Eliminar</button>
+							</div>
+						</div>
+					</div>
+					<!-- Div a reptir fin -->
+					<div class="center">
+						<button type="button" class="btn btn-lg btn-primary blackbtn">Añadir <i class="fa fa-plus"></i></button>
+					</div>
+				</div>
+
+				<div class="panel panel-default">
+					<div class="admin-edit-panel-heading">
 						<h3 class="panel-title admin-edit-paneltitle">Colección</h3>
 					</div>
 					<div class="panel-body">
+						<label>Elige el nombre de la colección a la que sera añadido tu producto:</label>
 						<select id="porcolec" class="form-control resalta">
+							<option selected disabled value="0"></option>
 							<option value="1">Hombre</option>
-							<option selected value="2">Mujer</option>
+							<option value="2">Mujer</option>
 						</select>
 					</div>
 				</div>

@@ -13,7 +13,7 @@
 </head>
 <body>
 
-	<?php include 'admin-header.php';?>
+	@@AdminHeader@@
 
     <script type="text/javascript">
     	$(document).ready(function(){
@@ -106,7 +106,7 @@
 		<div class="row">
 			<div class="col-lg-12 col-md-12 col-xs-12">
 				<img class="col-lg-1 col-md-1 col-xs-2"src="imagenes/blanco-mini.png" alt="">
-				<h1 class="principal col-lg-10 col-md-10 col-xs-8 ">Añadir nuevo producto</h1>
+				<h1 class="principal col-lg-10 col-md-10 col-xs-8 ">Camisa Negra</h1>
 				<img class="col-lg-1 col-md-1 col-xs-2"src="imagenes/blanco-mini.png" alt="">
 			</div>
 		</div>
@@ -120,20 +120,29 @@
 
 				<div class="panel panel-default">
 					<div class="admin-edit-panel-heading">
-						<h3 class="panel-title admin-edit-paneltitle">Nombre</h3>
+						<h3 class="panel-title admin-edit-paneltitle">ID</h3>
 					</div>
 					<div class="panel-body">
-						<input type="text" class="form-control resalta">
+						<input type="number" readonly value="27" class="form-control resalta">
 					</div>
 				</div>
 
 				<div class="panel panel-default">
 					<div class="admin-edit-panel-heading">
-						<h3 class="panel-title admin-edit-paneltitle">Imagen principal</h3>
+						<h3 class="panel-title admin-edit-paneltitle">Nombre</h3>
+					</div>
+					<div class="panel-body">
+						<input type="text" class="form-control resalta" value="Camisa negra">
+					</div>
+				</div>
+
+				<div class="panel panel-default">
+					<div class="admin-edit-panel-heading">
+						<h3 class="panel-title admin-edit-paneltitle">Imagen</h3>
 					</div>
 					<div class="panel-body center">
 						<div>
-							<img src="imagenes/prev-log.jpg">
+							<img src="imagenes/prenda.png">
 						</div>
 						<div>
 							<button type="button" class="btn btn-lg btn-primary blackbtn">Subir nueva imagen</button>
@@ -143,38 +152,13 @@
 
 				<div class="panel panel-default">
 					<div class="admin-edit-panel-heading">
-						<h3 class="panel-title admin-edit-paneltitle">Previsualizaciones</h3>
-					</div>
-
-					<!-- Div a reptir -->
-					<div id="div-repeat_1" class="panel-body center">
-						<div class="previewdiv">
-							<img id ="prev_1" src="imagenes/prev-log.jpg">
-							<div>
-								<button type="button" class="btn btn-lg btn-primary blackbtn">Modificar</button>
-								<button type="button" class="btn btn-lg btn-primary blackbtn">Eliminar</button>
-							</div>
-						</div>
-					</div>
-					<div class="center">
-						<button type="button" class="btn btn-lg btn-primary blackbtn">Añadir <i class="fa fa-plus"></i></button>
-					</div>
-				</div>
-
-				<div class="panel panel-default">
-					<div class="admin-edit-panel-heading">
 						<h3 class="panel-title admin-edit-paneltitle">Colección</h3>
 					</div>
 					<div class="panel-body">
-						<label>Elige el nombre de la colección a la que sera añadido tu producto:</label>
 						<select id="porcolec" class="form-control resalta">
-							<option selected disabled value="0"></option>
 							<option value="1">Hombre</option>
-							<option value="2">Mujer</option>
+							<option selected value="2">Mujer</option>
 						</select>
-						<label>Agregar Colección:</label>
-						<input class="form-control resalta" type="text">
-
 					</div>
 				</div>
 
@@ -185,7 +169,7 @@
 					<div class="panel-body">
 						<div class="input-group">
 							<span class="input-group-addon">$</span>
-							<input class="form-control resalta" type="number" onkeydown="return validaNumeros(event)" onChange="verificaNum(this)">
+							<input class="form-control resalta" type="number" value="200.00" onkeydown="return validaNumeros(event)" onChange="verificaNum(this)">
 						</div>
 					</div>
 				</div>
@@ -207,12 +191,21 @@
 						<h3 class="panel-title admin-edit-paneltitle">Descripción</h3>
 					</div>
 					<div class="panel-body">
-							<textarea class="form-control resalta nonresize"></textarea>
+							<textarea class="form-control resalta nonresize">Camisa simple negra ideal para salidas dominicales que tienen como lugar parques con frondosa vegetación</textarea>
 					</div>
 				</div>
 
 				<div class="center">
-					<button id="admin-alta" type="button" class="btn btn-lg btn-primary blackbtn">Validar</button>
+					<button id="admin-actualizar" type="button" class="btn btn-lg btn-primary blackbtn">Actualizar</button>
+				</div>
+
+				<div class="panel panel-default">
+					<div id="admin-header-eliminar" class="admin-edit-panel-heading center">
+						<h3 class="panel-title admin-edit-paneltitle"><i class="fa fa-exclamation-triangle"></i> Eliminar <i class="fa fa-exclamation-triangle"></i></h3>
+					</div>
+					<div class="panel-body center">
+						<button type="button" class="btn btn-lg btn-primary warning-btn">Eliminar objeto</button>
+					</div>
 				</div>
 
 				</form>

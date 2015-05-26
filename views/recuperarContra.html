@@ -94,7 +94,7 @@
 			@@Errores@@
 			<div class="col-lg-4 col-md-4 col-xs-4"></div>
 			<div class="col-lg-4 col-md-4 col-xs-4">
-				<form class="registro" action="?ctl=home&act=recuperar" method="POST">
+				<form class="registro" action="?ctl=home&act=recuperar" method="POST" onSubmit="cifrar()">
 					<label for="inputEmail" class="formtext">E-mail</label>
         				<input type="email" name="email" id="inputEmail" class="form-control resalta" placeholder="Correo asociado" onChange="validar()" required>
 
@@ -114,5 +114,18 @@
 	<!-- MARCA -->
 
 	@@Footer@@
+	<script>
+		function cifrar(){
+		
+			$('#inputPassword').val(
+				$().crypt({method: "sha1", source:$('#inputPassword').val()})
+			);
+		
+	
+			$('#inputPasswordConfirm').val(
+				$().crypt({method: "sha1", source:$('#inputPasswordConfirm').val()})
+			);
+		}
+	</script>
 </body>
 </html>

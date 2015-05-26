@@ -2,8 +2,8 @@
 	class BaseController{
 		protected $defaultMethod;
 		protected $model;
-		public function redirect($ctl,$method){
-			header("Location: ?ctl=".$ctl."&act=".$method);
+		public function redirect($ctl,$method,$extra=""){
+			header("Location: ?ctl=".$ctl."&act=".$method.$extra);
 			die();
 		}
 		public function run(){
@@ -24,15 +24,13 @@
 		protected function validate($value,$type){
 			switch($type){
 				case 'int':
-					return ctype_digit($value);
-				
+					return filter_var($value,FILTER_VALIDATE_INT);
+				case 'positiveInt':
+					return filter_var($value,FILTER_VALIDATE_INT,array('min_range'=>0));
 				case 'email':
 					return filter_var($value,FILTER_VALIDATE_EMAIL);
 					
 				case 'password':
-					return true;
-					
-				case 'user':
 					return true;
 					
 				case 'name':
@@ -46,9 +44,13 @@
 				
 				case 'optionalPassword':
 					return ($value=='' || $this->validate($value,'password'));
+					
+				case 'optionalName':
+					return ($value=='' || $this->validate($value,'name'));
 			}
 			return false;
 		}
+		
 		protected function validateExists($var,$values){
 			foreach($values as $val){
 				if(!isset($var[$val]))

@@ -42,26 +42,12 @@
 							<th>Producto</th>
 							<th>Cantidad</th>
 							<th class="text-center">Precio Unitario</th>
-							<th class="text-center">Importe</th>
+							<th class="text-center">Importe (Ya incluye descuento)</th>
                             <th></th>
 						</tr>
 					</thead>
 					<tbody class="blanco">
 						@@ListaProductos@@
-                    <tr>
-                        <td>   </td>
-                        <td>   </td>
-                        <td>   </td>
-                        <td><h5>Subtotal</h5></td>
-                        <td class="text-right"><h5><strong>$@@Subtotal@@</strong></h5></td>
-                    </tr>
-                    <tr>
-                        <td>   </td>
-                        <td>   </td>
-                        <td>   </td>
-                        <td><h5>Envío</h5></td>
-                        <td class="text-right"><h5><strong>$@@Envio@@</strong></h5></td>
-                    </tr>
                     <tr>
                         <td>   </td>
                         <td>   </td>
@@ -74,43 +60,17 @@
                         <td>   </td>
                         <td>   </td>
                         <td>
-                        <a href="index.php" class="btn btn-default">
-                            <span class="glyphicon glyphicon-shopping-cart"></span> Continuar comprando
+                        <a href="?ctl=productos" class="btn btn-default">
+							<span class="glyphicon glyphicon-shopping-cart"></span> Continuar comprando
                         </a></td>
-                        <td>
-                            <a data-toggle="modal" href="#logModal" class="btn btn-success">Checkout <span class="glyphicon glyphicon-play"></span></a>
-                            <div class="modal" id="logModal">
-                                <div class="modal-dialog">
-                                  <div class="modal-content">
-                                    <div class="modal-header">
-                                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                      <h4 class="modal-title">Lo siento, debes iniciar sesión para continuar</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                       <form  id="sesion" role="search">
-                                            <div class="form-group">
-                                                <input type="email" class="form-control input-sm" placeholder="ejemplo@dominio.com">
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="password" class="form-control input-sm" placeholder="Contraseña">
-                                            </div>
-                                            <button type="submit" class="btn btn-primary btn-sm">Iniciar sesion</button>
-                                        </form>
-                                    </div>
-                                    <div class="modal-footer">
-                                      <a href="?ctl=home&act=recuperar" data-dismiss="modal" class="btn">Recuperar Contraseña</a>
-                                      <a href="?ctl=home&act=registrar" class="btn btn-primary">Registrarse</a>
-                                    </div>
-                                  </div>
-                                </div>
-                            </div>
-                        </td>
+						<td>@@Modal@@</td>
                     </tr>
                 </tbody>
 				</table>
 			</div>
 		</div>
 	</div>
+	
 	@@Footer@@
 			
 </body>

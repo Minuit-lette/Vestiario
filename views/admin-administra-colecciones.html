@@ -45,89 +45,68 @@
 
 				<div class="panel panel-default">
 					<div class="admin-edit-panel-heading">
-						<h3 class="panel-title admin-edit-paneltitle">Criterio de búsqueda</h3>
+						<h3 class="panel-title admin-edit-paneltitle">Agregar colección</h3>
 					</div>
 
 					<div class="panel-body">
-						<!-- FORM DE BÚSQUEDA POR CRITERIO AQUÍ -->
-						<form id="busqueda">
-							<label for="buscar">Buscar producto o motrar colección</label>
-							<input type="text" class="form-control resalta"></input>
-							<select class="form-control resalta">
-								<option value="1">Todas las colecciones</option>
-								<option selectedvalue="2">Colección hombre</option>
-								<option value="3">Colección mujer</option>
+						<form action="?ctl=admin&act=crearColeccion" method="POST" id="crear" enctype="multipart/form-data">
+							<label for="nombrencoleccion">Nombre de la nueva colección</label>
+							<input name="Nombre" type="text" class="form-control resalta" id="nombrencoleccion">
+
+							<label for="categoriancoleccion">Categoría de la nueva colección</label>
+							<select id="categoriancoleccion" name="Categoria" class="form-control resalta">
+								<option selected disabled value="0"> </option>
+								<option value="H">Hombre</option>
+								<option value="M">Mujer</option>
 							</select>
 
-						<div class="center">
-							<button type="button" class="btn btn-lg btn-primary blackbtn">Ir</button>
-						</div>
+							<label for="categoriancoleccion">Descripción</label>
+							<textarea id="descripcionncoleccion" name="Descripcion" type="text" class="form-control resalta"></textarea>
+							</br>
+							<div>
+								<label for="imagenncoleccion">Imagen de la nueva colección</label>
+								<input id="imagenncoleccion" name="Imagen" type="file" class="btn btn-lg btn-primary blackbtn">
+							<div class="center">
+								<button type="submit" class="btn btn-lg btn-primary blackbtn">Aceptar</button>
+							</div>
 						</form>
 					</div>
 				</div>
 
+				<div class="panel panel-default">
+					<div class="admin-edit-panel-heading">
+						<h3 class="panel-title admin-edit-paneltitle">Listar colecciones</h3>
+					</div>
 
-				<div id="mensajebusqueda">
-						<span class="ital">Se muestra: "<span class="bol">Colección hombre</span>"</span>
+					
 				</div>
 
-				<table id="itemadmintable" class="table">
+				<form id="elimina-colecciones">
+				<table id="coleccionadmin" class="table">
 					<thead>
-						<th>ID</th>
-						<th>Imagen</th>
+	
 						<th>Nombre</th>
-						<th>Colección</th>
-						<th>Editar</th>
+						<th>Categoría</th>
+						<th>Objetos</th>
+						<th></th>
 					</thead>
-					
 					<tr>
-						<td> <span>27</span> </td>
-						<td> <img src="imagenes/prenda.png"> </td>
-						<td> <span>Camisa negra</span> </td>
+						<td> <input type="text" value="Niñas colegialas" class="form-control resalta"></input> </td>
 						<td>
-							<form>
-								<select class="form-control resalta">
-									<option selected value="1">Colección hombre</option>
-									<option value="1">Colección mujer</option>
-								</select>
-							<form>
+							<select class="form-control resalta">
+								<option value="H">Hombre</option>
+								<option selected value="M">Mujer</option>
+							</select>
 						</td>
-						<td> <button type="button" class="btn btn-lg btn-primary botonregistro"> Editar </button> </td>
-					</tr>
-
-					<tr>
-						<td> <span>36</span> </td>
-						<td> <img src="imagenes/camisacool.jpg"> </td>
-						<td> <span>Camisa vestial</span> </td>
-						<td>
-							<form>
-								<select class="form-control resalta">
-									<option selected value="1">Colección hombre</option>
-									<option value="1">Colección mujer</option>
-								</select>
-							<form>
-						</td>
-						<td> <button type="button" class="btn btn-lg btn-primary botonregistro"> Editar </button> </td>
-					</tr>
-
-					<tr>
-						<td> <span>56</span> </td>
-						<td> <img src="imagenes/taprab.jpg"> </td>
-						<td> <span>Camisa con taparabo largo</span> </td>
-						<td>
-							<form>
-								<select class="form-control resalta">
-									<option selected value="1">Colección hombre</option>
-									<option value="1">Colección mujer</option>
-								</select>
-							<form>
-						</td>
-						<td> <button type="button" class="btn btn-lg btn-primary botonregistro"> Editar </button> </td>
+						<td>12</td>
+						<td> <a class="btn btn-primary blackbtn">Editar</a> </td>
 					</tr>
 				</table>
+					<p>Solo podrás eliminar colecciones que no tengan artículos asignados</p>
+					<button id="admin-alta" type="button" class="btn btn-primary blackbtn" style="margin-bottom:20px">Actualizar</button>
+				</form>
 
-				<button id="admin-alta" type="button" class="btn btn-lg btn-primary blackbtn">Validar</button>
-			</div>
+				</div>
 		</div>
 	</div>
 

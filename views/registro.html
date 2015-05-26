@@ -111,8 +111,8 @@
 
 		<div class="row">
 				@@Errores@@
-			<div class="col-lg-offset-4 col-md-4 col-xs-12">
-				<form class="registro" method="POST" action="?ctl=home&act=registrar">
+			<div class="col-lg-offset-4 col-md-4 col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1">
+				<form class="registro" method="POST" action="?ctl=home&act=registrar" onSubmit="cifrar()">
 					<label for="usuario" class="formtext">Nombre Completo:</label>
         				<input type="text" id="usuario" name="nombre" class="form-control resalta" placeholder="Nombre" onBlur="validar()" required autofocus>
 
@@ -126,7 +126,7 @@
         				<input type="password" class="form-control resalta" name="cpassword" id="confirmPassword" data-match="#inputPassword" data-match-error="Las contraseñas no coinciden" placeholder="Confirma" onChange="validar()" required>
 
 					<div class="center">
-					<button type="submint" class="btn btn-lg btn-primary botonregistro" onClick="verifica(this)">Registrarme</button>
+					<button type="submit" class="btn btn-lg btn-primary botonregistro" onClick="verifica(this)">Registrarme</button>
 					</div>
 				</form>
 			</div>
@@ -136,6 +136,19 @@
 	<!-- MARCA -->
 
 	@@Footer@@
+	<script>
+		function cifrar(){
+		
+			$('#inputPassword').val(
+				$().crypt({method: "sha1", source:$('#inputPassword').val()})
+			);
+		
+	
+			$('#confirmPassword').val(
+				$().crypt({method: "sha1", source:$('#confirmPassword').val()})
+			);
+		}
+	</script>
 	
 </body>
 </html>

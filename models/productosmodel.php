@@ -16,7 +16,7 @@
 			if(is_object($result)){
 				$rows=$result->fetch_all(MYSQLI_ASSOC);
 				foreach($rows as $row){
-					$listaProductosColecciones["Productos"][$row["Nombre"]]=array("Precio"=>$row["Precio"],"img"=>$row["Imagen"],"id"=>$row["IdProducto"]);
+					$listaProductosColecciones["Productos"][$row["Nombre"]]=array("Precio"=>$row["Precio"],"img"=>$row["Imagen1"],"id"=>$row["IdProducto"]);
 				}
 			}
 			return $listaProductosColecciones;
@@ -32,7 +32,7 @@
 			if(is_object($result)){
 				$rows=$result->fetch_all(MYSQLI_ASSOC);
 				foreach($rows as $row){
-					$listaProductosColecciones["Productos"][$row["Nombre"]]=array("Precio"=>$row["Precio"],"img"=>$row["Imagen"],"id"=>$row["IdProducto"]);
+					$listaProductosColecciones["Productos"][$row["Nombre"]]=array("Precio"=>$row["Precio"],"img"=>$row["Imagen1"],"id"=>$row["IdProducto"]);
 				}
 			}
 			return $listaProductosColecciones;
@@ -48,23 +48,36 @@
 			if(is_object($result)){
 				$rows=$result->fetch_all(MYSQLI_ASSOC);
 				foreach($rows as $row){
-					$listaProductosColecciones["Productos"][$row["Nombre"]]=array("Precio"=>$row["Precio"],"img"=>$row["Imagen"],"id"=>$row["IdProducto"]);
+					$listaProductosColecciones["Productos"][$row["Nombre"]]=array("Precio"=>$row["Precio"],"img"=>$row["Imagen1"],"id"=>$row["IdProducto"]);
 				}
 			}
 			return $listaProductosColecciones;
 		}
 		
 		public function detalleProducto($id){
-			$datos=array(
-				"Nombre"=>"Ejemplo",
-				"Precio"=>500,
-				"Descripcion"=>"Descripcion ejemplo!",
-				"Img1"=>"prenda.png",
-				"Img2"=>"prenda.png",
-				"Img3"=>"prenda.png",
-				"ImgGrande"=>"prendagrande.png"
-			);
+			$id=$this->cleanSingle($id);
+			$result=$this->db->query("SELECT * FROM producto WHERE IdProducto=$id");
+			$datos=array();
+			if(is_object($result) && $result->num_rows>0){
+				$row=$result->fetch_assoc();
+				$datos=array(
+					"Nombre"=>$row['Nombre'],
+					"Precio"=>$row['Precio'],
+					"Descripcion"=>$row['Descripcion'],
+					"Img1"=>"prenda.png",
+					"Img2"=>"prenda.png",
+					"Img3"=>"prenda.png",
+					"ImgGrande"=>"prendagrande.png"
+				);
+			}
 			return $datos;
+		}
+		
+		public function tallas($id){
+			$result=$this->db->query("SELECT * FROM tallas WHERE IdTallas IN (SELECT IdTalla FROM vinculaciontallas WHERE IdProducto=$id)");
+			if(is_object($result) && $result->num_rows>0)
+				return $result->fetch_all(MYSQLI_ASSOC);
+			return array();
 		}
 	}
 ?>

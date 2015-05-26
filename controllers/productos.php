@@ -89,18 +89,29 @@
 		}
 		
 		public function detalleProducto(){
-			if($this->validate($_GET['id'],"int")){
+			if(isset($_GET['id']) && $this->validate($_GET['id'],"int")){
 				$producto=$this->model->detalleProducto($_GET['id']);
 				if(count($producto)==0)
 					$this->show404();
 				else{
+					$tallas="";
+					$listaTallas=$this->model->tallas($_GET['id']);
+					foreach($listaTallas as $talla){
+						$datos=array(
+							'@@IdTalla@@'=>$talla['IdTallas'],
+							'@@NombreTalla@@'=>$talla['Nombre']
+						);
+						$tallas.=$this->getFilledTemplate('opcion-talla',$datos);
+					}
 					$datos=array(
 						"@@ProductoNombre@@"=>$producto['Nombre'],
 						"@@ProductoPrecio@@"=>$producto['Precio'],
-						"@@ProductoImgGrande@@"=>$producto['ImgGrande'],
-						"@@ProductoImg1@@"=>$producto['Img1'],
-						"@@ProductoImg2@@"=>$producto['Img2'],
-						"@@ProductoImg3@@"=>$producto['Img3'],
+						"@@IdProducto@@"=>$_GET['id'],
+						"@@ProductoImg1@@"=>$producto['ImgGrande'],
+						"@@ProductoImg2@@"=>$producto['Img1'],
+						"@@ProductoImg3@@"=>$producto['Img2'],
+						"@@ProductoImg4@@"=>$producto['Img3'],
+						"@@ListaTallas@@"=>$tallas,
 						"@@ProductoDescripcion@@"=>$producto['Descripcion'],
 						"@@Header@@"=>$this->getHeader(),
 						"@@Footer@@"=>$this->getFilledTemplate('footer')

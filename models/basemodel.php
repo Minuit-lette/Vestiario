@@ -32,6 +32,7 @@
 			$data=$this->clean($data);
 			if(!isset($_SESSION['user'])){
 				extract($data);
+				$password=md5(sha1($password));
 				$res=$this->db->query("SELECT COUNT(*) as Cantidad FROM usuarios WHERE Correo='$email' AND Password='$password'");
 				$cant=$res->fetch_assoc();
 				$res->free();

@@ -99,6 +99,10 @@
 			$datos=array("AdminHeader"=>$this->getFilledTemplate('admin-header'));
 			echo $this->getFilledTemplate("admin-administra-pedidos",$datos);
 		}
+		
+		public function crearColeccion(){
+			$this->validateExists($_POST,array());
+		}
 	}
 
 

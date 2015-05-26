@@ -184,11 +184,15 @@ input{
 	text-align: center;
 }
 
-#itemadmintable thead{
+.previewdiv{
+	border-bottom: 1px solid #D8D8D8;
+}
+
+#itemadmintable thead, #coleccionadmin thead{
 	background-color: grey;
 }
 
-#itemadmintable th, #itemadmintable input{
+#itemadmintable th, #itemadmintable input, #coleccionadmin th, #coleccionadmin input{
 	text-align: center;
 }
 
@@ -208,14 +212,14 @@ input{
 	background-color: #30302D;
 }
 
-#itemadmintable button, #busqueda button{
+#itemadmintable button, #busqueda button, #crear button{
 	padding: .3pt;
 	font-size: 8pt;
 	width: 72px;
 	height: 30px;
 }
 
-#busqueda button{
+#busqueda button, #crear button{
 	margin-top: 25px;
 }
 

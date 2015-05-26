@@ -17,6 +17,7 @@
 		public function guardarUsuario($datos){
 			$datos=$this->clean($datos);
 			extract($datos);
+			$password=md5(sha1($password));
 			$res=$this->db->query("SELECT COUNT(*) as Cantidad FROM usuarios WHERE Correo='$email'");
 			$cant=$res->fetch_assoc();
 			$res->free();
@@ -47,7 +48,7 @@
 			$mail->isHTML(true);
 			$mail->Subject='Consulta al Vestiario';
 			$mail->Body=$datos['nombre'].' '.$datos['apellidos'].' comenta:<br/>'.$datos['mensaje'];
-			echo $mail->ErrorInfo;
+			//echo $mail->ErrorInfo;
 			return $mail->send();
 		}
 		
@@ -69,12 +70,46 @@
 		}
 		
 		public function cambiarPassword($datos){
-			$usuarios=array("dokorof2@hotmail.com","dokorof3@hotmail.com");
-			foreach($usuarios as $usuario){
-				if($usuario==$datos['email'])//usuario existe fake
-					return true;
+			$datos=$this->clean($datos);
+			extract($datos);
+			$token=md5(sha1(uniqid()));
+			$password=md5(sha1($password));
+			$tiempo=time()+(60*60*24*7);
+			$this->db->query("DELETE FROM recuperacion WHERE Correo='$email'");
+			$this->db->query("INSERT INTO recuperacion(Correo,Password,Token) VALUES('$email','$password','$token')");
+			$url="http://localhost/proyectoweb/?ctl=home&act=recuperarToken&correo=$email&token=$token";
+			$mensaje="
+				Para recuperar tu contraseña, da <a href='$url'>Click aquí</a>
+			";
+			$mensaje=utf8_decode($mensaje);
+			$mail=new PHPMailer;
+			$mail->isSMTP();
+			$mail->Host=MAIL_SERVER;
+			$mail->SMTPAuth=true;
+			$mail->Username=MAIL_USER;
+			$mail->Password=MAIL_PASSWORD;
+			$mail->SMTPSecure=MAIL_SECURITY;
+			$mail->Port=MAIL_PORT;
+			$mail->From ='vestiario@dokorof.com';
+			$mail->FromName = 'Vestiario';
+			$mail->addAddress($email);
+			$mail->isHTML(true);
+			$mail->Subject=utf8_decode('Recuperar la contraseña');
+			$mail->Body=$mensaje;
+			//echo $mail->ErrorInfo;
+			return $mail->send();
+		}
+		
+		public function confirmaCambioPassword($datos){
+			$datos=$this->clean($datos);
+			extract($datos);
+			$result=$this->db->query("SELECT * FROM recuperacion WHERE Correo='$correo' AND Token='$token' AND NOW()<(Tiempo + INTERVAL 1 DAY)");
+			if(is_object($result) && $result->num_rows>0){
+				$row=$result->fetch_assoc();
+				$password=$row['Password'];
+				$this->db->query("UPDATE usuarios SET Password='$password' WHERE Correo='$correo'");
+				return true;
 			}
-			//Insertar en la base
 			return false;
 		}
 		

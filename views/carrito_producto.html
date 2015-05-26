@@ -5,17 +5,17 @@
 			<div>
 				<h4><a href="?ctl=productos&act=detalleProducto&id=@@IdProducto@@">@@NombreProducto@@</a></h4>
 				<h5>Colección <a href="?ctl=productos&id=@@IdColeccion@@">@@NombreColeccion@@</a></h5>
-				<span>Status: </span><span class="text-@@Status@@"><strong>@@ProductoDisponibilidad@@</strong></span>
+				<span>Talla: </span><span class="text-@@Status@@"><strong>@@Talla@@</strong></span>
 			</div>
 		</div>
 	</td>
 	<td class="col-sm-1 col-md-1" style="text-align: center">
-	<input type="text" class="form-control" value="@@Cantidad@@">
+	<strong>@@Cantidad@@</strong>
 	</td>
 	<td class="col-sm-1 col-md-1 text-center"><strong>$@@PrecioUnitario@@</strong></td>
 	<td class="col-sm-1 col-md-1 text-center"><strong>$@@Importe@@</strong></td>
 	<td class="col-sm-1 col-md-1">
-	<button type="button" class="btn btn-danger">
+	<a href="?ctl=carrito&act=quitar&id=@@IdProductoEliminar@@" class="btn btn-danger">
 		<span class="glyphicon glyphicon-remove"></span> Remover
-	</button></td>
+	</a></td>
 </tr>

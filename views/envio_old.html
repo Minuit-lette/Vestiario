@@ -113,10 +113,23 @@
 					errorcalle.remove();
 				calleVal=0;
 			}
+			if(cp.val() == null || cp.val().length == 0 || !isNaN(cp.val())){
+				if(cpVal!=1){
+					errorcp=$('<div/>',{'class': 'alert alert-danger'});
+					errorcp.text("Codigo postal vacio");
+					errorcp.insertAfter(cp);
+				}
+					cpVal=1;
+			}
+			else{
+				if(cpVal==1)
+					errorcp.remove();
+				cpVal=0;
+			}
 		}
 		function verificaForm(){
 			validar();
-			if(nombreVal==1 || apeVal==1 || correoVal==1 || calleVal==1){
+			if(nombreVal==1 || apeVal==1 || correoVal==1 || cpVal==1 || calleVal==1){
 				if(botonVal!=1){
 					errorBoton=$('<div/>',{'class': 'alert alert-danger'});
 					errorBoton.text("Hay campos con errores");
@@ -137,7 +150,7 @@
 		<div class="row">
 			<div class="col-lg-12 col-md-12 col-xs-12">
 				<img class="col-lg-1 col-md-1 col-xs-2"src="imagenes/blanco-mini.png" alt="">
-				<h1 class="principal col-lg-10 col-md-10 col-xs-8 ">Datos de Envío</h1>
+				<h1 class="principal col-lg-10 col-md-10 col-xs-8 ">Datos de Envio</h1>
 				<img class="col-lg-1 col-md-1 col-xs-2"src="imagenes/blanco-mini.png" alt="">
 			</div>
 		</div>
@@ -145,36 +158,37 @@
 		<div class="row">
 			
 			<div>
-				<form action="?ctl=carrito&act=pago" method="POST" class="registro" onsubmit="return verificaForm()">
+				<form class="registro" onsubmit="return verificaForm()">
 					<div class="row">
 						<div class="col-md-4 col-xs-6">
-							<label class="formtext">Nombre (*)</label>
-		        				<input name="Nombre" type="text"  class="form-control resalta" placeholder="Nombre" id="nombre" onChange="validar()" onkeydown="return letras(event)">
+							<label class="formtext">Nombre</label>
+		        				<input type="text"  class="form-control resalta" placeholder="Nombre" id="nombre" onChange="validar()" onkeydown="return letras(event)">
 
-		        			<label class="formtext">Apellido (*)</label>
-		        				<input name="Apellidos" type="text"  class="form-control resalta" placeholder="Apellido" id="apellido" onChange="validar()" onkeydown="return letras(event)">
+		        			<label class="formtext">Apellido</label>
+		        				<input type="text"  class="form-control resalta" placeholder="Apellido" id="apellido" onChange="validar()" onkeydown="return letras(event)">
 
-							<label for="inputEmail" class="formtext">E-mail (*)</label>
-		        				<input name="Correo" type="email" id="inputEmail" class="form-control resalta" placeholder="E-mail" onChange="validar()" required>
-		        				<label for="telefono" class="formtext">Teléfono (*)</label>
-		        				<input name="Telefono" type="phone" id="telefono" class="form-control resalta" placeholder="Teléfono" onChange="validar()" required>
+							<label for="inputEmail" class="formtext">E-mail</label>
+		        				<input type="email" id="inputEmail" class="form-control resalta" placeholder="E-mail" onChange="validar()" required>
+
+		        				<label for="telefono" class="formtext">Telefono</label>
+		        				<input type="text" id="telefono" class="form-control resalta" placeholder="E-mail" onChange="validar()" required>
 	        			</div>	
 						<div class="col-md-4 col-xs-6">
-							<label class="formtext">País</label>
-		        				<input name="Pais" type="text"  class="form-control resalta" placeholder="Pais">
+							<label class="formtext">Pais</label>
+		        				<select type="text"  class="form-control resalta" placeholder="Pais"></select>
 
 		        			<label class="formtext">Estado</label>
-		        				<input name="Estado" type="text"  class="form-control resalta" placeholder="Estado">
+		        				<select type="text"  class="form-control resalta" placeholder="Estado"></select>
 
 							<label class="formtext">Ciudad</label>
-		        				<input name="Ciudad" type="text"  class="form-control resalta" placeholder="Ciudad">
+		        				<select type="text"  class="form-control resalta" placeholder="Ciudad"></select>
 
-		        			<label class="formtext">Calle (*)</label>
-		        				<input name="Calle" type="text"  class="form-control resalta" placeholder="Calle" id="calle" onChange="validar()">
+		        			<label class="formtext">Calle</label>
+		        				<input type="text"  class="form-control resalta" placeholder="Calle" id="calle" onChange="validar()">
 						</div>
 						<div class="col-md-4 col-xs-12">	
-		        			<label class="formtext">Código Postal</label>
-		        			<input name="CodigoPostal" type="text"  class="form-control resalta" placeholder="Codigo Postal" id="cp">
+		        			<label class="formtext">Codigo Postal</label>
+		        				<input type="text"  class="form-control resalta" placeholder="Codigo Postal" id="cp" onChange="validar()">
 		        			<div class="center">
 							<button type="submit" class="btn btn-lg btn-primary botonregistro" onClick="validarForm()">Continuar</button>
 							</div>
@@ -188,6 +202,6 @@
 	<!-- MARCA -->
 
 	@@Footer@@
-	@@Modal@@
+	
 </body>
 </html>

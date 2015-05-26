@@ -61,8 +61,8 @@
 			$colecciones_string="";
 			foreach($lista as $nombre=>$opciones){
 				$datos=array(
-					"@@ColeccionTitulo@@"=>$nombre,
-					"@@ColeccionDescripcion@@"=>$opciones["Descripcion"],
+					"@@ColeccionTitulo@@"=>utf8_encode($nombre),
+					"@@ColeccionDescripcion@@"=>utf8_encode($opciones["Descripcion"]),
 					"@@ColeccionImg@@"=>$opciones["Img"],
 					"@@ColeccionId@@"=>$opciones["Id"]
 				);
@@ -219,8 +219,31 @@
 					"@@Footer@@"=>$this->getFilledTemplate("footer"),
 					"@@Errores@@"=>""
 				);
+				if(isset($_GET['msg']) && $this->validate($_GET['msg'],"positiveInt")){
+					if($_GET['msg']==1)
+						$datos['@@Errores@@']=$this->getFilledTemplate("errores",array("@@Error@@"=>"Contraseña cambiada exitosamente"));
+					if($_GET['msg']==2)
+						$datos['@@Errores@@']=$this->getFilledTemplate("errores",array("@@Error@@"=>"Token y correo inválidos"));
+				}
 				echo $this->getFilledTemplate("recuperarContra",$datos);
 			}
+		}
+		
+		public function recuperarToken(){
+			if($this->validateExists($_GET,array("correo","token"))){
+			if($this->validate($_GET["correo"],"email") && $this->validate($_GET["token"],"text")){
+					if($this->model->confirmaCambioPassword($_GET)){
+						$this->redirect("home","recuperar","&msg=1");
+					}
+					else{
+						$this->redirect("home","recuperar","&msg=2");
+					}
+				}
+				else
+					$this->redirect("home","recuperar","&msg=2");
+			}
+			else
+				$this->redirect("home","recuperar","&msg=2");
 		}
 		
 		public function logout(){

@@ -88,7 +88,49 @@
 			if(!$this->model->loggedIn() || !$this->model->userIsAdmin()){
 				$this->redirect("home","mostrarIndice");
 			}
-			$datos=array("AdminHeader"=>$this->getFilledTemplate('admin-header'));
+			$errores="";
+			$errores_modificacion="";
+			$errores_eliminacion="";
+			if(isset($_GET['error'])){
+				switch($_GET['error']){
+					case 0:
+						$errores="Colección subida exitosamente";
+					break;
+					
+					case 1:
+						$errores="Archivo inválido";
+					break;
+					case 2:
+						$errores="Datos inválidos";
+					break;
+				}
+			}
+			if(isset($_GET['remover']) && $this->validate($_GET['remover'],"positiveInt")){
+				
+				if(!$this->model->eliminarColeccion($_GET['remover']))
+					$errores_modificacion="No se pudo eliminar la colección";
+				else
+					$errores_modificacion="Colección eliminada correctamente";
+			}
+			$colecciones=$this->model->colecciones();
+			$colecciones_string="";
+			foreach($colecciones as $coleccion){
+				$datos=array(
+					"@@IdColeccion@@"=>$coleccion['IdColecciones'],
+					"@@NombreColeccion@@"=>utf8_encode($coleccion['Nombre']),
+					"@@Hombre@@"=>($coleccion['Categoria']=='H')?"selected":"",
+					"@@Mujer@@"=>($coleccion['Categoria']=='M')?"selected":""
+					
+				);
+				$colecciones_string.=$this->getFilledTemplate('coleccion-fila',$datos);
+			}
+			$datos=array(
+				"@@AdminHeader@@"=>$this->getFilledTemplate('admin-header'),
+				"@@ErroresAlta@@"=>$errores,
+				"@@ErroresModificacion@@"=>$errores_modificacion,
+				"@@ErroresEliminacion@@"=>$errores_eliminacion,
+				"@@ListaColecciones@@"=>$colecciones_string
+			);
 			echo $this->getFilledTemplate("admin-administra-colecciones",$datos);
 		}
 		
@@ -101,7 +143,26 @@
 		}
 		
 		public function crearColeccion(){
-			$this->validateExists($_POST,array());
+			if($this->validateExists($_POST,array("Nombre","Categoria","Descripcion"))){
+				if($this->validateArrayTypes($_POST,array("Nombre"=>"text","Categoria"=>"category","Descripcion"=>"text"))){
+					if(is_uploaded_file($_FILES['Imagen']['tmp_name']) && in_array(strtolower(end((explode(".",$_FILES['Imagen']['name'])))),array("gif","jpeg","jpg","png"))){
+						if(move_uploaded_file($_FILES['Imagen']['tmp_name'],'./imagenes/'.basename($_FILES['Imagen']['name']))){
+							$datos=$_POST+array("Imagen"=>basename($_FILES['Imagen']['name']));
+							$this->model->crearColeccion($datos);
+							$this->redirect("admin","colecciones","&error=0");
+						}
+						else
+							$this->redirect("admin","colecciones","&error=1");
+					}
+					else
+						$this->redirect("admin","colecciones","&error=1");
+				}
+				else
+					$this->redirect("admin","colecciones","&error=2");
+					
+			}
+			else
+				$this->redirect("admin","colecciones","&error=2");
 		}
 	}
 

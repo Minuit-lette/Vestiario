@@ -42,6 +42,9 @@
 				case 'usertype':
 					return ($value=='Usuario' || $value=='Admin');
 				
+				case 'category':
+					return ($value=='H' || $value=='M');
+				
 				case 'optionalPassword':
 					return ($value=='' || $this->validate($value,'password'));
 					

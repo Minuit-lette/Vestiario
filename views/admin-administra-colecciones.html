@@ -69,6 +69,7 @@
 							<div class="center">
 								<button type="submit" class="btn btn-lg btn-primary blackbtn">Aceptar</button>
 							</div>
+							@@ErroresAlta@@
 						</form>
 					</div>
 				</div>
@@ -81,29 +82,22 @@
 					
 				</div>
 
-				<form id="elimina-colecciones">
+				<form action="?ctl=admin&act=colecciones" method="POST" id="elimina-colecciones">
 				<table id="coleccionadmin" class="table">
 					<thead>
 	
 						<th>Nombre</th>
 						<th>Categoría</th>
-						<th>Objetos</th>
+						<th></th>
 						<th></th>
 					</thead>
-					<tr>
-						<td> <input type="text" value="Niñas colegialas" class="form-control resalta"></input> </td>
-						<td>
-							<select class="form-control resalta">
-								<option value="H">Hombre</option>
-								<option selected value="M">Mujer</option>
-							</select>
-						</td>
-						<td>12</td>
-						<td> <a class="btn btn-primary blackbtn">Editar</a> </td>
-					</tr>
+				<tbody>
+					@@ListaColecciones@@
+				</tbody>
 				</table>
 					<p>Solo podrás eliminar colecciones que no tengan artículos asignados</p>
-					<button id="admin-alta" type="button" class="btn btn-primary blackbtn" style="margin-bottom:20px">Actualizar</button>
+					<p>@@ErroresEliminacion@@</p>
+					<p>@@ErroresModificacion@@</p>
 				</form>
 
 				</div>

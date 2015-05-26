@@ -1,4 +1,4 @@
-<form action="?ctl=admin&act=usuarios" method="POST">
+<form action="?ctl=admin&act=usuarios" method="POST" onSubmit="cifrar()">
 <div class="panel panel-default">
 	<div class="admin-edit-panel-heading">
 		<h3 class="panel-title admin-edit-paneltitle">Nombre Completo</h3>
@@ -26,7 +26,7 @@
 	</div>
 
 	<div class="panel-body">
-		<input type="password" name="password" class="form-control resalta">
+		<input id="passadmin" type="password" name="password" class="form-control resalta">
 	</div>
 </div>
 
@@ -50,3 +50,11 @@
 
 
 </form>
+<script>
+function cifrar(){
+
+	$('#passadmin').val(
+		$().crypt({method: "sha1", source:$('#passadmin').val()})
+	);
+}
+</script>
